@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from "motion/react"
 import { Menu, X } from "lucide-react"
+import Logo from "@/components/Logo.tsx";
 
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false)
@@ -32,12 +33,9 @@ const Navbar = () => {
             <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
                 <button
                     onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                    className="font-mono text-sm tracking-widest uppercase"
-                    style={{ color: "#00D4FF", fontFamily: "'JetBrains Mono', monospace" }}
+                    className="cursor-pointer"
                 >
-                    <span style={{ color: "#7B2FFF" }}>&lt;</span>
-                    dev
-                    <span style={{ color: "#7B2FFF" }}>/&gt;</span>
+                    <Logo size={40} />
                 </button>
 
                 {/* Desktop */}

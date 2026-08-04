@@ -1,7 +1,9 @@
-import {Cpu, Gamepad2, Globe, Terminal} from "lucide-react";
-import {useRef} from "react";
-import {motion, useInView} from "motion/react";
-import SectionLabel from "../components/SectionLabel.tsx";
+import { useRef } from "react"
+import { motion, useInView } from "motion/react"
+import { Gamepad2, Cpu, Globe, Terminal } from "lucide-react"
+import SectionLabel from "../components/SectionLabel"
+import HoloScan from "../components/HoloScan"
+import HoloCube from "../components/HoloCube"
 
 const SKILLS = [
     {
@@ -37,7 +39,7 @@ const SKILLS = [
             { name: "WebGL / Three.js", level: 70 },
             { name: "Next.js", level: 76 },
             { name: "TailwindCSS", level: 88 },
-            { name: "REST / GraphQL APIs", level: 80 },
+            { name: "REST / GraphQL", level: 80 },
         ],
     },
     {
@@ -52,11 +54,11 @@ const SKILLS = [
             { name: "Agile / Scrum", level: 78 },
         ],
     },
-];
+]
 
 function SkillBar({ name, level, color }: { name: string; level: number; color: string }) {
-    const ref = useRef(null);
-    const inView = useInView(ref, { once: true, margin: "-40px" });
+    const ref = useRef(null)
+    const inView = useInView(ref, { once: true, margin: "-40px" })
 
     return (
         <div ref={ref} className="mb-3">
@@ -87,19 +89,16 @@ function SkillBar({ name, level, color }: { name: string; level: number; color: 
                 />
             </div>
         </div>
-    );
+    )
 }
 
 const SkillsSection = () => {
-    const ref = useRef(null);
-    const inView = useInView(ref, { once: true, margin: "-80px" });
+    const ref = useRef(null)
+    const inView = useInView(ref, { once: true, margin: "-80px" })
 
     return (
         <section id="skills" className="relative py-28 px-6" style={{ zIndex: 1 }}>
-            <div
-                className="absolute inset-0"
-                style={{ background: "rgba(13,17,48,0.4)" }}
-            />
+            <div className="absolute inset-0" style={{ background: "rgba(13,17,48,0.4)" }} />
             <div className="max-w-6xl mx-auto relative">
                 <motion.div
                     ref={ref}
@@ -108,57 +107,72 @@ const SkillsSection = () => {
                     transition={{ duration: 0.6 }}
                 >
                     <SectionLabel text="Skills & expertise" />
-                    <h2
-                        className="text-4xl md:text-5xl font-bold mb-14"
-                        style={{ fontFamily: "'Rajdhani', sans-serif", color: "#E2E8F8" }}
-                    >
-                        What I bring{" "}
-                        <span style={{ color: "#00D4FF" }}>to the table</span>
-                    </h2>
+                    <div className="flex items-end justify-between mb-14">
+                        <h2
+                            className="text-4xl md:text-5xl font-bold"
+                            style={{ fontFamily: "'Rajdhani', sans-serif", color: "#E2E8F8" }}
+                        >
+                            What I bring{" "}
+                            <span style={{ color: "#00D4FF" }}>to the table</span>
+                        </h2>
+                        <div className="hidden md:block opacity-60">
+                            <HoloCube size={70} color="#00D4FF" delay={0.5} />
+                        </div>
+                    </div>
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {SKILLS.map((group, i) => {
-                        const Icon = group.icon;
+                        const Icon = group.icon
                         return (
                             <motion.div
                                 key={group.category}
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={inView ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.6, delay: i * 0.12 }}
-                                className="p-6"
-                                style={{
-                                    background: "rgba(13,17,48,0.7)",
-                                    border: `1px solid ${group.color}22`,
-                                    borderRadius: "6px",
-                                    backdropFilter: "blur(8px)",
-                                }}
-                                onMouseEnter={(e) => {
-                                    (e.currentTarget as HTMLElement).style.borderColor = `${group.color}55`;
-                                }}
-                                onMouseLeave={(e) => {
-                                    (e.currentTarget as HTMLElement).style.borderColor = `${group.color}22`;
-                                }}
                             >
-                                <div className="flex items-center gap-3 mb-5">
-                                    <div
-                                        className="w-8 h-8 flex items-center justify-center rounded"
-                                        style={{ background: `${group.color}18` }}
-                                    >
-                                        <Icon size={18} style={{ color: group.color }} />
+                                <HoloScan
+                                    color={group.color}
+                                    duration={3.5 + i * 0.5}
+                                    className="h-full"
+                                    style={{
+                                        background: "rgba(13,17,48,0.7)",
+                                        border: `1px solid ${group.color}22`,
+                                        borderRadius: "6px",
+                                        backdropFilter: "blur(8px)",
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        (e.currentTarget as HTMLElement).style.borderColor = `${group.color}55`
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        (e.currentTarget as HTMLElement).style.borderColor = `${group.color}22`
+                                    }}
+                                >
+                                    <div className="p-6">
+                                        <div className="flex items-center gap-3 mb-5">
+                                            <div
+                                                className="w-8 h-8 flex items-center justify-center rounded"
+                                                style={{ background: `${group.color}18` }}
+                                            >
+                                                <Icon size={18} style={{ color: group.color }} />
+                                            </div>
+                                            <span
+                                                className="text-sm font-semibold tracking-wide"
+                                                style={{
+                                                    color: group.color,
+                                                    fontFamily: "'Rajdhani', sans-serif",
+                                                }}
+                                            >
+                        {group.category}
+                      </span>
+                                        </div>
+                                        {group.items.map((skill) => (
+                                            <SkillBar key={skill.name} {...skill} color={group.color} />
+                                        ))}
                                     </div>
-                                    <span
-                                        className="text-sm font-semibold tracking-wide"
-                                        style={{ color: group.color, fontFamily: "'Rajdhani', sans-serif", fontSize: "0.9rem" }}
-                                    >
-                    {group.category}
-                  </span>
-                                </div>
-                                {group.items.map((skill) => (
-                                    <SkillBar key={skill.name} {...skill} color={group.color} />
-                                ))}
+                                </HoloScan>
                             </motion.div>
-                        );
+                        )
                     })}
                 </div>
             </div>
@@ -166,4 +180,4 @@ const SkillsSection = () => {
     )
 }
 
-export default SkillsSection;
+export default SkillsSection

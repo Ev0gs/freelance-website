@@ -2,6 +2,8 @@ import {useRef, useState} from "react";
 import {motion, useInView} from "motion/react";
 import {ArrowRight, BookMarked, ExternalLink, Zap} from "lucide-react";
 import SectionLabel from "../components/SectionLabel.tsx";
+import HoloScan from "@/components/HoloScan.tsx";
+import {useTilt} from "@/hooks/useTilt.ts";
 
 const PROJECTS = [
     {
@@ -66,10 +68,22 @@ const PROJECTS = [
     },
 ];
 
-function ProjectCard({ project, delay }: { project: (typeof PROJECTS)[0]; delay: number }) {
-    const ref = useRef(null);
-    const inView = useInView(ref, { once: true, margin: "-60px" });
-    const [hovered, setHovered] = useState(false);
+interface Project {
+    title: string
+    type: string
+    tag: string
+    tagColor: string
+    desc: string
+    image: string
+    links: { github: string; live: string | null }
+    featured: boolean
+}
+
+function ProjectCard({ project, delay, index }: { project: Project; delay: number; index: number }) {
+    const ref = useRef(null)
+    const inView = useInView(ref, { once: true, margin: "-60px" })
+    const [hovered, setHovered] = useState(false)
+    const { ref: tiltRef, rotateX, rotateY, handleMouseMove, handleMouseLeave } = useTilt(12)
 
     return (
         <motion.div
@@ -77,99 +91,121 @@ function ProjectCard({ project, delay }: { project: (typeof PROJECTS)[0]; delay:
             initial={{ opacity: 0, y: 40 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay }}
-            className="relative overflow-hidden flex flex-col"
-            style={{
-                background: "#0D1130",
-                border: `1px solid ${hovered ? project.tagColor + "44" : "rgba(0,212,255,0.1)"}`,
-                borderRadius: "6px",
-                transition: "border-color 0.3s",
-                cursor: "default",
-            }}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
+            className="h-full" // ← ajoute ici
         >
-            <div className="relative h-44 overflow-hidden">
-                <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500"
+            <div style={{ perspective: "800px" }} className="h-full"> // ← et ici
+                <motion.div
+                    ref={tiltRef}
+                    className="h-full" // ← et ici
                     style={{
-                        filter: "saturate(0.6) brightness(0.7)",
-                        transform: hovered ? "scale(1.05)" : "scale(1)",
+                        rotateX,
+                        rotateY,
+                        transformStyle: "preserve-3d",
                     }}
-                />
-                <div
-                    className="absolute inset-0"
-                    style={{ background: "linear-gradient(to bottom, transparent 40%, #0D1130 100%)" }}
-                />
-                {project.featured && (
-                    <div
-                        className="absolute top-3 right-3 text-xs px-2 py-1 flex items-center gap-1"
+                    onMouseMove={handleMouseMove}
+                    onMouseEnter={() => setHovered(true)}
+                    onMouseLeave={() => {
+                        handleMouseLeave()
+                        setHovered(false)
+                    }}
+                >
+                    <HoloScan
+                        color={project.tagColor}
+                        duration={3 + index * 0.4}
+                        className="flex flex-col h-full"
                         style={{
-                            background: "rgba(0,212,255,0.15)",
-                            border: "1px solid rgba(0,212,255,0.4)",
-                            color: "#00D4FF",
-                            borderRadius: "3px",
-                            fontFamily: "'JetBrains Mono', monospace",
+                            background: "#0D1130",
+                            border: `1px solid ${hovered ? project.tagColor + "44" : "rgba(0,212,255,0.1)"}`,
+                            borderRadius: "6px",
+                            transition: "border-color 0.3s, box-shadow 0.3s",
+                            boxShadow: hovered ? `0 0 30px ${project.tagColor}18` : "none",
                         }}
                     >
-                        <Zap size={10} /> featured
-                    </div>
-                )}
-                <span
-                    className="absolute bottom-3 left-4 text-xs px-2 py-0.5 rounded"
-                    style={{
-                        background: `${project.tagColor}20`,
-                        color: project.tagColor,
-                        border: `1px solid ${project.tagColor}40`,
-                        fontFamily: "'JetBrains Mono', monospace",
-                    }}
-                >
-          {project.tag}
-        </span>
-            </div>
+                        <div className="relative h-44 overflow-hidden">
+                            <img
+                                src={project.image}
+                                alt={project.title}
+                                className="w-full h-full object-cover transition-transform duration-500"
+                                style={{
+                                    filter: "saturate(0.6) brightness(0.7)",
+                                    transform: hovered ? "scale(1.05)" : "scale(1)",
+                                }}
+                            />
+                            <div
+                                className="absolute inset-0"
+                                style={{ background: "linear-gradient(to bottom, transparent 40%, #0D1130 100%)" }}
+                            />
+                            {project.featured && (
+                                <div
+                                    className="absolute top-3 right-3 text-xs px-2 py-1 flex items-center gap-1"
+                                    style={{
+                                        background: "rgba(0,212,255,0.15)",
+                                        border: "1px solid rgba(0,212,255,0.4)",
+                                        color: "#00D4FF",
+                                        borderRadius: "3px",
+                                        fontFamily: "'JetBrains Mono', monospace",
+                                    }}
+                                >
+                                    <Zap size={10} /> featured
+                                </div>
+                            )}
+                            <span
+                                className="absolute bottom-3 left-4 text-xs px-2 py-0.5 rounded"
+                                style={{
+                                    background: `${project.tagColor}20`,
+                                    color: project.tagColor,
+                                    border: `1px solid ${project.tagColor}40`,
+                                    fontFamily: "'JetBrains Mono', monospace",
+                                }}
+                            >
+                      {project.tag}
+                    </span>
+                        </div>
 
-            <div className="flex flex-col flex-1 p-5">
-                <div className="flex items-start justify-between mb-2">
-                    <div>
-                        <p
-                            className="text-xs mb-1"
-                            style={{ color: "#6B7A9E", fontFamily: "'JetBrains Mono', monospace" }}
-                        >
-                            {project.type}
-                        </p>
-                        <h3
-                            className="text-xl font-bold"
-                            style={{ color: "#E2E8F8", fontFamily: "'Rajdhani', sans-serif" }}
-                        >
-                            {project.title}
-                        </h3>
-                    </div>
-                </div>
-                <p
-                    className="text-sm leading-relaxed mb-5 flex-1"
-                    style={{ color: "#6B7A9E", fontFamily: "'DM Sans', sans-serif", fontWeight: 300 }}
-                >
-                    {project.desc}
-                </p>
-                <div className="flex gap-3 mt-auto">
-                    <a
-                        href={project.links.github}
-                        className="flex items-center gap-1.5 text-xs transition-colors duration-200 hover:text-[#00D4FF]"
-                        style={{ color: "#A8B4D4", fontFamily: "'DM Sans', sans-serif" }}
-                    >
-                        <BookMarked size={14} /> Source
-                    </a>
-                    {project.links.live && (
-                        <a
-                            href={project.links.live}
-                            className="flex items-center gap-1.5 text-xs transition-colors duration-200 hover:text-[#00D4FF]"
-                            style={{ color: "#A8B4D4", fontFamily: "'DM Sans', sans-serif" }}
-                        >
-                            <ExternalLink size={14} /> Live Demo
-                        </a>
-                    )}
-                </div>
+                        <div className="flex flex-col flex-1 p-5">
+                            <div className="flex items-start justify-between mb-2">
+                                <div>
+                                    <p
+                                        className="text-xs mb-1"
+                                        style={{ color: "#6B7A9E", fontFamily: "'JetBrains Mono', monospace" }}
+                                    >
+                                        {project.type}
+                                    </p>
+                                    <h3
+                                        className="text-xl font-bold"
+                                        style={{ color: "#E2E8F8", fontFamily: "'Rajdhani', sans-serif" }}
+                                    >
+                                        {project.title}
+                                    </h3>
+                                </div>
+                            </div>
+                            <p
+                                className="text-sm leading-relaxed mb-5 flex-1"
+                                style={{ color: "#6B7A9E", fontFamily: "'DM Sans', sans-serif", fontWeight: 300 }}
+                            >
+                                {project.desc}
+                            </p>
+                            <div className="flex gap-3 mt-auto">
+                                <a
+                                    href={project.links.github}
+                                    className="flex items-center gap-1.5 text-xs transition-colors duration-200 hover:text-[#00D4FF]"
+                                    style={{ color: "#A8B4D4", fontFamily: "'DM Sans', sans-serif" }}
+                                >
+                                    <BookMarked size={14} /> Source
+                                </a>
+                                {project.links.live && (
+                                    <a
+                                        href={project.links.live}
+                                        className="flex items-center gap-1.5 text-xs transition-colors duration-200 hover:text-[#00D4FF]"
+                                        style={{ color: "#A8B4D4", fontFamily: "'DM Sans', sans-serif" }}
+                                    >
+                                        <ExternalLink size={14} /> Live Demo
+                                    </a>
+                                )}
+                            </div>
+                        </div>
+                    </HoloScan>
+                </motion.div>
             </div>
         </motion.div>
     );
@@ -200,7 +236,7 @@ const ProjectsSection = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                     {PROJECTS.map((p, i) => (
-                        <ProjectCard key={p.title} project={p} delay={i * 0.08} />
+                        <ProjectCard key={p.title} project={p} delay={i * 0.08} index={i} />
                     ))}
                 </div>
 
@@ -208,7 +244,7 @@ const ProjectsSection = () => {
                     initial={{ opacity: 0 }}
                     animate={inView ? { opacity: 1 } : {}}
                     transition={{ delay: 0.6, duration: 0.6 }}
-                    className="mt-10 flex justify-center"
+                    className="mt-16 flex justify-center"
                 >
                     <a
                         href="#"

@@ -1,6 +1,7 @@
 import { motion, useInView } from "motion/react";
 import {useRef} from "react";
 import SectionLabel from "../components/SectionLabel.tsx";
+import HoloCube from "@/components/HoloCube.tsx";
 
 const AboutSection = () => {
     const ref = useRef(null);
@@ -61,14 +62,29 @@ const AboutSection = () => {
                                         background: "rgba(0,212,255,0.05)",
                                     }}
                                 >
-                  {tag}
-                </span>
+                                  {tag}
+                                </span>
                             ))}
+                        </div>
+                        {/* Mini holo panel */}
+                        <div className="mt-6 max-w-xs">
+                            {/*<HoloPanelSmall
+                                lines={["> DEGREE: CS Bachelor", "> COFFEE: yes", "> BUG_FOUND: fixing...", "> COMMITS: 2,341"]}
+                                color="#7B2FFF"
+                            />*/}
                         </div>
                     </div>
 
                     {/* Right: photo + decorative frame */}
                     <div className="relative flex justify-center">
+                        {/* Floating holo cubes */}
+                        <div className="absolute -top-8 right-0 opacity-50">
+                            <HoloCube size={60} color="#7B2FFF" />
+                        </div>
+                        <div className="absolute -bottom-4 left-4 opacity-40" style={{ animationDelay: "1.5s" }}>
+                            <HoloCube size={44} color="#00D4FF" />
+                        </div>
+
                         <div className="relative w-72 h-80 md:w-80 md:h-96">
                             <div
                                 className="absolute inset-0 rounded-sm overflow-hidden"
