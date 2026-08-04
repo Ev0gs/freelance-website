@@ -1,0 +1,13 @@
+:root {
+    --background: #07091A;
+
+    --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+}
+
+body {
+    background: #07091A;
+}
+
+::-webkit-scrollbar { display: none; }
+* { scrollbar-width: none; }
+html { scroll-behavior: smooth; }

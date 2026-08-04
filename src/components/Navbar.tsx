@@ -1,0 +1,136 @@
+import { useEffect, useState } from 'react'
+import { motion, AnimatePresence } from "motion/react"
+import { Menu, X } from "lucide-react"
+
+const Navbar = () => {
+    const [scrolled, setScrolled] = useState(false)
+    const [mobileOpen, setMobileOpen] = useState(false)
+    const [hoveredLink, setHoveredLink] = useState<string | null>(null)
+
+    useEffect(() => {
+        const handler = () => setScrolled(window.scrollY > 40)
+        window.addEventListener("scroll", handler)
+        return () => window.removeEventListener("scroll", handler)
+    }, [])
+
+    const links = ["About", "Skills", "Projects", "Contact"]
+
+    const scrollTo = (id: string) => {
+        document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: "smooth" })
+        setMobileOpen(false)
+    }
+
+    return (
+        <nav
+            className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+            style={{
+                background: scrolled ? "rgba(7,9,26,0.92)" : "transparent",
+                backdropFilter: scrolled ? "blur(12px)" : "none",
+                borderBottom: scrolled ? "1px solid rgba(0,212,255,0.1)" : "none",
+            }}
+        >
+            <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+                <button
+                    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                    className="font-mono text-sm tracking-widest uppercase"
+                    style={{ color: "#00D4FF", fontFamily: "'JetBrains Mono', monospace" }}
+                >
+                    <span style={{ color: "#7B2FFF" }}>&lt;</span>
+                    dev
+                    <span style={{ color: "#7B2FFF" }}>/&gt;</span>
+                </button>
+
+                {/* Desktop */}
+                <ul
+                    className="hidden md:flex items-center gap-8"
+                    onMouseLeave={() => setHoveredLink(null)}
+                >
+                    {links.map((l) => (
+                        <li key={l} className="relative">
+                            <button
+                                onClick={() => scrollTo(l)}
+                                onMouseEnter={() => setHoveredLink(l)}
+                                className="text-sm tracking-wide transition-colors duration-200 pb-1 cursor-pointer"
+                                style={{
+                                    color: hoveredLink === l ? "#00D4FF" : "#A8B4D4",
+                                    fontFamily: "'DM Sans', sans-serif",
+                                    fontWeight: 500,
+                                }}
+                            >
+                                {l}
+                            </button>
+
+                            {/* Animated underline */}
+                            <AnimatePresence>
+                                {hoveredLink === l && (
+                                    <motion.span
+                                        layoutId="underline"
+                                        className="absolute left-0 bottom-0 h-px w-full"
+                                        style={{ background: "#00D4FF" }}
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 0.2 }}
+                                    />
+                                )}
+                            </AnimatePresence>
+                        </li>
+                    ))}
+                </ul>
+
+                <button
+                    className="hidden md:flex items-center gap-2 text-sm px-4 py-2 transition-all duration-200 cursor-pointer"
+                    style={{
+                        border: "1px solid rgba(0,212,255,0.4)",
+                        color: "#00D4FF",
+                        borderRadius: "4px",
+                        fontFamily: "'DM Sans', sans-serif",
+                    }}
+                    onClick={() => scrollTo("Contact")}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.background = "rgba(0,212,255,0.1)"
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.background = "transparent"
+                    }}
+                >
+                    Hire me
+                </button>
+
+                <button
+                    className="md:hidden"
+                    style={{ color: "#00D4FF" }}
+                    onClick={() => setMobileOpen((o) => !o)}
+                >
+                    {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+                </button>
+            </div>
+
+            {/* Animated underline (mobile ver.) */}
+            <AnimatePresence>
+                {mobileOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="md:hidden px-6 pb-6 pt-2 flex flex-col gap-4"
+                        style={{ background: "rgba(7,9,26,0.97)" }}
+                    >
+                        {links.map((l) => (
+                            <button
+                                key={l}
+                                onClick={() => scrollTo(l)}
+                                className="text-left text-base"
+                                style={{ color: "#A8B4D4", fontFamily: "'DM Sans', sans-serif" }}
+                            >
+                                {l}
+                            </button>
+                        ))}
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </nav>
+    )
+}
+
+export default Navbar
