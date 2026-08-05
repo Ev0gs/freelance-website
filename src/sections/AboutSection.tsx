@@ -1,4 +1,3 @@
-// src/sections/AboutSection.tsx
 import { motion, useInView } from "motion/react";
 import { useRef, useEffect, useState } from "react";
 import SectionLabel from "../components/SectionLabel.tsx";

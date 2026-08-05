@@ -1,3 +1,4 @@
+// src/sections/ProjectsSection.tsx
 import {useRef, useState} from "react";
 import {motion, useInView} from "motion/react";
 import {ArrowRight, BookMarked, ExternalLink, Zap} from "lucide-react";
@@ -14,7 +15,7 @@ interface Project {
     tagColor: string
     desc: string
     image: string
-    links: { github: string; live: string | null }
+    links: { github: string | null; live: string | null }
     featured: boolean
 }
 
@@ -22,6 +23,7 @@ function ProjectCard({ project, delay, index }: { project: Project; delay: numbe
     const ref = useRef(null)
     const inView = useInView(ref, { once: true, margin: "-60px" })
     const [hovered, setHovered] = useState(false)
+    const { t } = useTranslation()
     const { ref: tiltRef, rotateX, rotateY, handleMouseMove, handleMouseLeave } = useTilt(12)
 
     return (
@@ -30,12 +32,12 @@ function ProjectCard({ project, delay, index }: { project: Project; delay: numbe
             initial={{ opacity: 0, y: 40 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay }}
-            className="h-full" // ← ajoute ici
+            className="h-full"
         >
-            <div style={{ perspective: "800px" }} className="h-full"> // ← et ici
+            <div style={{ perspective: "800px" }} className="h-full">
                 <motion.div
                     ref={tiltRef}
-                    className="h-full" // ← et ici
+                    className="h-full"
                     style={{
                         rotateX,
                         rotateY,
@@ -85,7 +87,7 @@ function ProjectCard({ project, delay, index }: { project: Project; delay: numbe
                                         fontFamily: "'JetBrains Mono', monospace",
                                     }}
                                 >
-                                    <Zap size={10} /> featured
+                                    <Zap size={10} /> {t("projects.featured")}
                                 </div>
                             )}
                             <span
@@ -97,8 +99,8 @@ function ProjectCard({ project, delay, index }: { project: Project; delay: numbe
                                     fontFamily: "'JetBrains Mono', monospace",
                                 }}
                             >
-                      {project.tag}
-                    </span>
+                                {project.tag}
+                            </span>
                         </div>
 
                         <div className="flex flex-col flex-1 p-5">
@@ -125,101 +127,107 @@ function ProjectCard({ project, delay, index }: { project: Project; delay: numbe
                                 {project.desc}
                             </p>
                             <div className="flex gap-3 mt-auto">
+                                {project.links.github && (
                                 <a
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     href={project.links.github}
                                     className="flex items-center gap-1.5 text-xs transition-colors duration-200 hover:text-[#00D4FF]"
                                     style={{ color: "#A8B4D4", fontFamily: "'DM Sans', sans-serif" }}
-                                >
-                                    <BookMarked size={14} /> Source
-                                </a>
-                                {project.links.live && (
-                                    <a
-                                        href={project.links.live}
-                                        className="flex items-center gap-1.5 text-xs transition-colors duration-200 hover:text-[#00D4FF]"
-                                        style={{ color: "#A8B4D4", fontFamily: "'DM Sans', sans-serif" }}
                                     >
-                                        <ExternalLink size={14} /> Live Demo
+                                    <BookMarked size={14} /> {t("projects.source")}
                                     </a>
-                                )}
+                                    )}
+                                {project.links.live && (
+                                <a
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    href={project.links.live}
+                                    className="flex items-center gap-1.5 text-xs transition-colors duration-200 hover:text-[#00D4FF]"
+                                    style={{ color: "#A8B4D4", fontFamily: "'DM Sans', sans-serif" }}
+                                    >
+                                    <ExternalLink size={14} /> {t("projects.liveDemo")}
+                                    </a>
+                                    )}
                             </div>
                         </div>
                     </HoloScan>
                 </motion.div>
             </div>
         </motion.div>
-    );
+    )
 }
 
 const ProjectsSection = () => {
-    const ref = useRef(null);
-    const inView = useInView(ref, { once: true, margin: "-80px" });
+    const ref = useRef(null)
+    const inView = useInView(ref, { once: true, margin: "-80px" })
     const { t } = useTranslation()
 
-    const PROJECTS = [
+    const PROJECTS: Project[] = [
         {
-            id: "void-engine",
-            title: "VoidEngine",
-            type: t("projects.items.voidengine.type"),
+            id: "nexus-engine",
+            title: "NexusEngine",
+            type: t("projects.items.nexusengine.type"),
             tag: "C++ / OpenGL",
             tagColor: "#7B2FFF",
-            desc: t("projects.items.voidengine.desc"),
-            image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=700&h=420&fit=crop&auto=format",
-            links: { github: "#", live: null },
-            featured: true,
+            desc: t("projects.items.nexusengine.desc"),
+            image: "/nexusengine.png",
+            links: { github: "https://github.com/Ev0gs/NexusEngine", live: null },
+            featured: false,
         },
         {
-            id: "neon-city",
-            title: "NeonCity Runners",
-            type: t("projects.items.neoncity.type"),
-            tag: "Unity / C#",
+            id: "eokko",
+            title: "Eokko",
+            type: t("projects.items.eokko.type"),
+            tag: "Next.js / TypeScript",
             tagColor: "#00D4FF",
-            desc: t("projects.items.neoncity.desc"),
-            image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=700&h=420&fit=crop&auto=format",
-            links: { github: "#", live: "#" },
-            featured: true,
+            desc: t("projects.items.eokko.desc"),
+            image: "/eokko.png",
+            links: { github: null, live: "https://eokko.com" },
+            featured: false,
         },
         {
-            id: "client-sync",
-            title: "ClientSync CRM",
-            type: t("projects.items.clientsync.type"),
-            tag: "TypeScript / React",
+            id: "timetoplay",
+            title: "TimeToPlay",
+            type: t("projects.items.timetoplay.type"),
+            tag: "Unity / C#",
             tagColor: "#00FF9C",
-            desc: t("projects.items.clientsync.desc"),
-            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&h=420&fit=crop&auto=format",
-            links: { github: "#", live: "#" },
+            desc: t("projects.items.timetoplay.desc"),
+            image: "/timetoplay.png",
+            links: { github: null, live: "https://timetoplay.com" },
             featured: false,
         },
         {
-            id: "rust-net",
-            title: "RustNet",
-            type: t("projects.items.rustnet.type"),
-            tag: "Rust",
+            id: "virtual-lab",
+            title: "Virtual Lab",
+            type: t("projects.items.virtuallab.type"),
+            tag: "Unity / VR",
             tagColor: "#FFB800",
-            desc: t("projects.items.rustnet.desc"),
-            image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&h=420&fit=crop&auto=format",
-            links: { github: "#", live: null },
+            desc: t("projects.items.virtuallab.desc"),
+            image: "/virtuallab.png",
+            links: { github: null, live: null },
             featured: false,
         },
         {
-            id: "shader-lab",
-            title: "ShaderLab",
-            type: t("projects.items.shaderlab.type"),
-            tag: "WebGL / GLSL",
+            id: "archiviz-vr",
+            title: "ArchivizVR",
+            type: t("projects.items.archivizvr.type"),
+            tag: "Unreal Engine 5 / VR",
             tagColor: "#FF3B5C",
-            desc: t("projects.items.shaderlab.desc"),
-            image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=700&h=420&fit=crop&auto=format",
-            links: { github: "#", live: "#" },
+            desc: t("projects.items.archivizvr.desc"),
+            image: "/archivizvr.png",
+            links: { github: "https://gitlab.com/evogs/scissors-in-the-plug/archiviz-vr", live: null },
             featured: false,
         },
         {
-            id: "logic-forge",
-            title: "LogicForge",
-            type: t("projects.items.logicforge.type"),
-            tag: "Godot / GDScript",
+            id: "findux",
+            title: "FindUX",
+            type: t("projects.items.findux.type"),
+            tag: "Vue.js / Django",
             tagColor: "#7B2FFF",
-            desc: t("projects.items.logicforge.desc"),
-            image: "https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=700&h=420&fit=crop&auto=format",
-            links: { github: "#", live: "#" },
+            desc: t("projects.items.findux.desc"),
+            image: "/findux.png",
+            links: { github: null, live: null },
             featured: false,
         },
     ]
@@ -267,7 +275,7 @@ const ProjectsSection = () => {
             </motion.div>
         </div>
 </section>
-    )
+)
 }
 
-export default ProjectsSection;
+export default ProjectsSection

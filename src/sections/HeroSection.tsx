@@ -1,4 +1,3 @@
-// src/sections/HeroSection.tsx
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";

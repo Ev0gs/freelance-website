@@ -86,32 +86,32 @@
     "titleHighlight": "shipped",
     "viewAll": "View all projects on GitHub",
     "source": "Source",
-    "liveDemo": "Live Demo",
+    "liveDemo": "Website",
     "featured": "featured",
     "items": {
-      "voidengine": {
-        "type": "Game Engine",
-        "desc": "A custom 2D/3D game engine built from scratch in C++17 with an OpenGL renderer, entity-component system, scene editor, and integrated Lua scripting for gameplay logic."
+      "nexusengine": {
+        "type": "3D Game Engine",
+        "desc": "Custom C++ game engine built around an ECS architecture with OpenGL 3.3+ rendering, rigid body physics, and a playable survival shooter sample demonstrating the full pipeline."
       },
-      "neoncity": {
-        "type": "Indie Game",
-        "desc": "A cyberpunk endless runner with procedurally generated city blocks, dynamic obstacle patterns, and a real-time lighting system using Unity's HDRP pipeline."
+      "eokko": {
+        "type": "ERP Platform",
+        "desc": "A multi-context ERP developed on Next.js. This product aims to centralize data from multiple businesses in a single platform to facilitate business management."
       },
-      "clientsync": {
-        "type": "Web App",
-        "desc": "A client relationship manager built for a small consulting firm. Features pipeline tracking, contract management, invoice generation, and Slack integration."
+      "timetoplay": {
+        "type": "Mobile Game Platform",
+        "desc": "A hypercasual mini-games hub developed on Unity, centralizing mini-games in a single platform with real rewards following competitions between players. Available on Android & iOS."
       },
-      "rustnet": {
-        "type": "Networking Library",
-        "desc": "A lightweight game networking library in Rust implementing reliable UDP, client prediction, lag compensation, and server reconciliation for multiplayer games."
+      "virtuallab": {
+        "type": "VR Game",
+        "desc": "A virtual reality game about laboratory experiences made for Meta Quest 2 & 3 on Unity. Complete quests by following the narrator's instructions through immersive lab environments."
       },
-      "shaderlab": {
-        "type": "Tool",
-        "desc": "An in-browser GLSL shader playground with live editing, uniform sliders, texture upload support, and one-click export to Unity-compatible shader code."
+      "archivizvr": {
+        "type": "VR Visualization",
+        "desc": "Realistic architectural visualization in virtual reality developed on Unreal Engine 5.1 for Meta Quest 2, built during an internship at Scissors In The Plug using Blueprints and 3D assets."
       },
-      "logicforge": {
-        "type": "Game Jam Entry",
-        "desc": "48-hour game jam entry — a puzzle platformer where you reprogram the level's logic mid-run. Placed 3rd in the Ludum Dare 54 Compo category."
+      "findux": {
+        "type": "Web Monitoring App",
+        "desc": "Real-time monitoring web application built with Django and Vue.js for the metropolis of Bordeaux. Automates application integration via GitLab pipelines and assists the integration & supervision department."
       }
     }
   },

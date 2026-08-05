@@ -118,32 +118,32 @@
     "titleHighlight": "été livrés",
     "viewAll": "Voir tous les projets sur GitHub",
     "source": "Source",
-    "liveDemo": "Démo live",
+    "liveDemo": "Site web",
     "featured": "vedette",
     "items": {
-      "voidengine": {
-        "type": "Moteur de jeu",
-        "desc": "Un moteur de jeu 2D/3D custom construit de zéro en C++17 avec un renderer OpenGL, un système entité-composant, un éditeur de scène, et du scripting Lua intégré pour la logique de gameplay."
+      "nexusengine": {
+        "type": "Moteur de jeu 3D",
+        "desc": "Moteur de jeu C++ custom construit autour d'une architecture ECS avec rendu OpenGL 3.3+, physique à corps rigides, et un jeu de démonstration (survival shooter) illustrant le pipeline complet."
       },
-      "neoncity": {
-        "type": "Jeu indépendant",
-        "desc": "Un endless runner cyberpunk avec des blocs de ville générés procéduralement, des patterns d'obstacles dynamiques, et un système d'éclairage temps réel via le pipeline HDRP d'Unity."
+      "eokko": {
+        "type": "Plateforme ERP",
+        "desc": "Un ERP multi-contexte développé sur Next.js. Ce produit vise à centraliser les données de plusieurs entreprises sur une seule plateforme pour faciliter la gestion commerciale."
       },
-      "clientsync": {
-        "type": "Application web",
-        "desc": "Un CRM construit pour un cabinet de conseil. Inclut le suivi de pipeline, la gestion de contrats, la génération de factures, et une intégration Slack."
+      "timetoplay": {
+        "type": "Plateforme de jeux mobiles",
+        "desc": "Un hub de mini-jeux hypercasuels développé sur Unity, centralisant les mini-jeux sur une seule plateforme avec des récompenses réelles à l'issue de compétitions entre joueurs. Disponible sur Android & iOS."
       },
-      "rustnet": {
-        "type": "Librairie réseau",
-        "desc": "Une librairie réseau légère pour jeux en Rust implémentant UDP fiable, prédiction client, compensation de lag, et réconciliation serveur pour les jeux multijoueurs."
+      "virtuallab": {
+        "type": "Jeu VR",
+        "desc": "Un jeu en réalité virtuelle sur des expériences de laboratoire développé pour Meta Quest 2 & 3 sur Unity. Complétez des quêtes en suivant les instructions du narrateur dans des environnements de laboratoire immersifs."
       },
-      "shaderlab": {
-        "type": "Outil",
-        "desc": "Un playground GLSL in-browser avec édition en direct, sliders d'uniforms, upload de textures, et export en un clic vers du code shader compatible Unity."
+      "archivizvr": {
+        "type": "Visualisation VR",
+        "desc": "Visualisation architecturale réaliste en réalité virtuelle développée sur Unreal Engine 5.1 pour Meta Quest 2, réalisée lors d'un stage chez Scissors In The Plug avec Blueprints et assets 3D."
       },
-      "logicforge": {
-        "type": "Entrée Game Jam",
-        "desc": "Entrée de game jam de 48h — un puzzle platformer où vous reprogrammez la logique du niveau en cours de run. 3ème place dans la catégorie Compo de la Ludum Dare 54."
+      "findux": {
+        "type": "Application de monitoring web",
+        "desc": "Application web de monitoring temps réel développée avec Django et Vue.js pour la Métropole de Bordeaux. Automatise l'intégration des applications via des pipelines GitLab et assiste le département intégration & supervision."
       }
     }
   },
