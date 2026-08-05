@@ -1,4 +1,8 @@
+import { useTranslation } from "react-i18next"
+
 const Footer = () => {
+    const { t } = useTranslation()
+
     return (
         <footer
             className="relative py-8 px-6 text-center"
@@ -12,9 +16,9 @@ const Footer = () => {
                 style={{ color: "#6B7A9E", fontFamily: "'JetBrains Mono', monospace" }}
             >
                 <span style={{ color: "#7B2FFF" }}>&lt;</span>
-                built by Pierre Latorse
+                {t("footer.built")}
                 <span style={{ color: "#7B2FFF" }}> /&gt;</span>
-                {" "}— 2025
+                {" "}— 2026
             </p>
         </footer>
     )

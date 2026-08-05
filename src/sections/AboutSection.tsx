@@ -3,27 +3,13 @@ import { motion, useInView } from "motion/react";
 import { useRef, useEffect, useState } from "react";
 import SectionLabel from "../components/SectionLabel.tsx";
 import HoloCube from "@/components/HoloCube.tsx";
-
-const COMMANDS = [
-    { cmd: "whoami", out: "Pierre Latorse" },
-    { cmd: "cat status.txt", out: "✓ Available for work" },
-    { cmd: "cat location.txt", out: "Bordeaux, FR (Remote OK)" },
-    { cmd: "cat experience.txt", out: "3+ years in CS" },
-    { cmd: "cat degree.txt", out: "CS Master" },
-    { cmd: "cat coffee.log", out: "☕ Consumption: none" },
-    { cmd: "git log --oneline -1", out: "a3f2c1d feat: shipped client app" },
-    { cmd: "cat bugs.txt", out: "Status: fixing..." },
-    { cmd: "uptime", out: "coding for 3+ years" },
-    { cmd: "cat languages.txt", out: "C++ / C# / TS / Python" },
-    { cmd: "ping clients", out: "Response time: < 24h" },
-    { cmd: "cat motto.txt", out: "Build things that matter." },
-]
+import { useTranslation } from "react-i18next"
 
 type ConsoleLine =
     | { type: "typing"; text: string }
     | { type: "done"; cmd: string; out: string }
 
-function useConsoleEffect() {
+function useConsoleEffect(commands: {cmd: string; out: string}[]){
     const [lines, setLines] = useState<ConsoleLine[]>([])
     const [cmdIndex, setCmdIndex] = useState(0)
     const [charIndex, setCharIndex] = useState(0)
@@ -38,7 +24,7 @@ function useConsoleEffect() {
     }, [lines])
 
     useEffect(() => {
-        const current = COMMANDS[cmdIndex % COMMANDS.length]
+        const current = commands[cmdIndex % commands.length]
 
         if (phase === "typing") {
             if (charIndex < current.cmd.length) {
@@ -82,21 +68,38 @@ function useConsoleEffect() {
 
         if (phase === "pause") {
             const timeout = setTimeout(() => {
-                setCmdIndex((i) => (i + 1) % COMMANDS.length)
+                setCmdIndex((i) => (i + 1) % commands.length)
                 setCharIndex(0)
                 setPhase("typing")
             }, 800)
             return () => clearTimeout(timeout)
         }
-    }, [phase, charIndex, cmdIndex])
+    }, [phase, charIndex, cmdIndex, commands])
 
     return { lines, consoleRef }
 }
 
 const AboutSection = () => {
+    const { t } = useTranslation()
     const ref = useRef(null)
     const inView = useInView(ref, { once: true, margin: "-80px" })
-    const { lines, consoleRef } = useConsoleEffect()
+
+    const COMMANDS = [
+        { cmd: "whoami",              out: t("about.console.whoami") },
+        { cmd: "cat status.txt",      out: t("about.console.status") },
+        { cmd: "cat location.txt",    out: t("about.console.location") },
+        { cmd: "cat experience.txt",  out: t("about.console.experience") },
+        { cmd: "cat degree.txt",      out: t("about.console.degree") },
+        { cmd: "cat coffee.log",      out: t("about.console.coffee") },
+        { cmd: "git log --oneline -1",out: t("about.console.git") },
+        { cmd: "cat bugs.txt",        out: t("about.console.bugs") },
+        { cmd: "uptime",              out: t("about.console.uptime") },
+        { cmd: "cat languages.txt",   out: t("about.console.languages") },
+        { cmd: "ping clients",        out: t("about.console.ping") },
+        { cmd: "cat motto.txt",       out: t("about.console.motto") },
+    ]
+
+    const { lines, consoleRef } = useConsoleEffect(COMMANDS)
 
     return (
         <section id="about" className="relative py-28 px-6" style={{ zIndex: 1 }}>
@@ -110,38 +113,34 @@ const AboutSection = () => {
                 >
                     {/* Left: text */}
                     <div>
-                        <SectionLabel text="About me" />
+                        <SectionLabel text={t("about.label")} />
                         <h2
                             className="text-4xl md:text-5xl font-bold mb-6"
                             style={{ fontFamily: "'Rajdhani', sans-serif", color: "#E2E8F8", lineHeight: 1.1 }}
                         >
-                            Code is craft.
+                            {t("about.title1")}
                             <br />
-                            <span style={{ color: "#7B2FFF" }}>Games are art.</span>
+                            <span style={{ color: "#7B2FFF" }}>
+                                {t("about.title2")}
+                            </span>
                         </h2>
                         <div
                             className="space-y-4 text-base leading-relaxed"
                             style={{ color: "#A8B4D4", fontFamily: "'DM Sans', sans-serif", fontWeight: 300 }}
                         >
                             <p>
-                                I&apos;m a 24-year-old freelance software engineer who lives at the intersection of
-                                engineering discipline and creative drive. My specialty is game programming —
-                                physics systems, real-time rendering pipelines, gameplay feel — but I thrive
-                                across the full spectrum of computer science.
+                                {t("about.p1")}
                             </p>
                             <p>
-                                Every project starts the same way: understanding what you actually need,
-                                not just what you asked for. Then I build a solution that fits precisely,
-                                performs reliably, and ships on time.
+                                {t("about.p2")}
                             </p>
                             <p>
-                                When I&apos;m not freelancing, I&apos;m usually deep in a personal game project,
-                                contributing to open-source tools, or learning more about new technologies I currently
-                                have no experience with.
+                                {t("about.p3")}
                             </p>
                         </div>
+                        {/*
                         <div className="mt-8 flex flex-wrap gap-3">
-                            {["C++", "Unity", "Unreal", "Rust", "TypeScript", "OpenGL"].map((tag) => (
+                            {["C++", "Unity", "Unreal", ".NET", "TypeScript", "OpenGL"].map((tag) => (
                                 <span
                                     key={tag}
                                     className="text-xs px-3 py-1"
@@ -157,6 +156,7 @@ const AboutSection = () => {
                                 </span>
                             ))}
                         </div>
+                        */}
                     </div>
 
                     {/* Right: console holographique */}

@@ -9,53 +9,9 @@ import { WrenchIcon, type WrenchIconHandle } from "@/components/ui/wrench.tsx"
 import { LayersIcon, type LayersIconHandle } from "@/components/ui/layers.tsx"
 import { FlaskIcon, type FlaskIconHandle } from "@/components/ui/flask.tsx"
 import { BotIcon, type BotIconHandle } from "@/components/ui/bot.tsx"
+import { useTranslation } from "react-i18next"
 
 type AnyIconHandle = CpuIconHandle | EarthIconHandle | WrenchIconHandle | LayersIconHandle | FlaskIconHandle
-
-const SERVICES = [
-    {
-        title: "Game Development",
-        subtitle: "From prototype to shipped title",
-        color: "#7B2FFF",
-        description: "Gameplay systems, physics engines, AI behaviours, shaders, procedural generation — I build the parts that make games feel alive. From indie prototypes to Unreal-based productions.",
-        tags: ["C++", "Unreal", "Unity", "OpenGL", "Gameplay", "Shaders", "Physics"],
-    },
-    {
-        title: "Systems Programming",
-        subtitle: "Low-level, high performance",
-        color: "#00D4FF",
-        description: "Memory-safe, blazing-fast software for performance-critical applications. Networking stacks, embedded tooling, custom allocators, real-time systems.",
-        tags: ["C++", "C#", ".NET", "Rust", "Networking", "Embedded", "Optimization", "Concurrency"],
-    },
-    {
-        title: "Web & Full-Stack",
-        subtitle: "End-to-end web applications",
-        color: "#00FF9C",
-        description: "Complete web products from database schema to pixel-perfect UI. REST & GraphQL APIs, authentication, dashboards, real-time features.",
-        tags: ["React", "TypeScript", "Node.js", "PostgreSQL", "Next.js", "Docker"],
-    },
-    {
-        title: "Tools & Automation",
-        subtitle: "Workflows that work for you",
-        color: "#FFB800",
-        description: "Custom CLI tools, editor plugins, build systems, CI/CD pipelines, scripting — anything that saves your team hours every week.",
-        tags: ["Bash", "Python", "CMake", "CI/CD", "Git Hooks", "DevOps"],
-    },
-    {
-        title: "Software Architecture",
-        subtitle: "Design that scales",
-        color: "#FF3B5C",
-        description: "System design, architecture reviews, tech stack consulting. I help teams make the right structural decisions before they become expensive problems.",
-        tags: ["System Design", "Code Review", "Refactoring", "API Design", "Consulting"],
-    },
-    {
-        title: "R&D & Prototyping",
-        subtitle: "Explore first, build fast",
-        color: "#00D4FF",
-        description: "Rapid prototyping for any CS challenge — algorithm design, research implementation, proof-of-concepts. If it involves a computer, I can make it work.",
-        tags: ["Algorithms", "AI/ML", "Simulations", "Procedural", "Math", "Anything CS"],
-    },
-];
 
 // Composant icône par index de service
 function ServiceIcon({ index, color, iconRef }: { index: number; color: string; iconRef: React.Ref<AnyIconHandle> }) {
@@ -79,7 +35,20 @@ function ServiceIcon({ index, color, iconRef }: { index: number; color: string; 
     }
 }
 
-function ServiceCard({ service, delay, inView, index }: { service: typeof SERVICES[0]; delay: number; inView: boolean; index: number }) {
+interface Service {
+    title: string
+    subtitle: string
+    color: string
+    description: string
+    tags: string[]
+}
+
+function ServiceCard({ service, delay, inView, index }: {
+    service: Service
+    delay: number
+    inView: boolean
+    index: number
+}) {
     const [hovered, setHovered] = useState(false)
     const iconRef = useRef<AnyIconHandle>(null)
 
@@ -158,9 +127,61 @@ function ServiceCard({ service, delay, inView, index }: { service: typeof SERVIC
 const ServicesSection = () => {
     const ref = useRef(null)
     const inView = useInView(ref, { once: true, margin: "-80px" })
+    const { t } = useTranslation()
 
     const arrowRightIconRef = useRef<ArrowRightIconHandle>(null)
     const botIconRef = useRef<BotIconHandle>(null)
+
+    const SERVICES = [
+        {
+            id: "game-dev",
+            title: t("services.items.gameDev.title"),
+            subtitle: t("services.items.gameDev.subtitle"),
+            color: "#7B2FFF",
+            description: t("services.items.gameDev.description"),
+            tags: ["C++", "Unreal", "Unity", "OpenGL", "Gameplay", "Shaders", "Physics"],
+        },
+        {
+            id: "systems",
+            title: t("services.items.systems.title"),
+            subtitle: t("services.items.systems.subtitle"),
+            color: "#00D4FF",
+            description: t("services.items.systems.description"),
+            tags: ["C++", "C#", ".NET", "Rust", "Networking", "Embedded", "Optimization", "Concurrency"],
+        },
+        {
+            id: "web",
+            title: t("services.items.web.title"),
+            subtitle: t("services.items.web.subtitle"),
+            color: "#00FF9C",
+            description: t("services.items.web.description"),
+            tags: ["React", "TypeScript", "Node.js", "PostgreSQL", "Next.js", "Docker"],
+        },
+        {
+            id: "tools",
+            title: t("services.items.tools.title"),
+            subtitle: t("services.items.tools.subtitle"),
+            color: "#FFB800",
+            description: t("services.items.tools.description"),
+            tags: ["Bash", "Python", "CMake", "CI/CD", "Git Hooks", "DevOps"],
+        },
+        {
+            id: "architecture",
+            title: t("services.items.architecture.title"),
+            subtitle: t("services.items.architecture.subtitle"),
+            color: "#FF3B5C",
+            description: t("services.items.architecture.description"),
+            tags: ["System Design", "Code Review", "Refactoring", "API Design", "Consulting"],
+        },
+        {
+            id: "rnd",
+            title: t("services.items.rnd.title"),
+            subtitle: t("services.items.rnd.subtitle"),
+            color: "#00D4FF",
+            description: t("services.items.rnd.description"),
+            tags: ["Algorithms", "AI/ML", "Simulations", "Procedural", "Math", "Anything CS"],
+        },
+    ]
 
     return (
         <section id="services" className="relative py-28 px-6" style={{ zIndex: 1 }}>
@@ -168,18 +189,18 @@ const ServicesSection = () => {
 
             <div className="max-w-6xl mx-auto relative">
                 <motion.div ref={ref} initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}>
-                    <SectionLabel text="What I do" />
+                    <SectionLabel text={t("services.label")} />
                     <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-14">
                         <h2 className="text-4xl md:text-5xl font-bold" style={{ fontFamily: "'Rajdhani', sans-serif", color: "#E2E8F8", lineHeight: 1.1 }}>
-                            Services I<br />
-                            <span style={{ color: "#7B2FFF" }}>can deliver</span>
+                            {t("services.title")}<br />
+                            <span style={{ color: "#7B2FFF" }}>{t("services.titleHighlight")}</span>
                         </h2>
                     </div>
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                     {SERVICES.map((s, i) => (
-                        <ServiceCard key={s.title} service={s} delay={i * 0.1} inView={inView} index={i} />
+                        <ServiceCard key={s.id} service={s} delay={i * 0.1} inView={inView} index={i} />
                     ))}
                 </div>
 
@@ -198,8 +219,8 @@ const ServicesSection = () => {
                             <BotIcon ref={botIconRef} size={20} style={{ color: "#00D4FF" }} />
                         </div>
                         <div>
-                            <p className="font-semibold" style={{ fontFamily: "'Rajdhani', sans-serif", color: "#E2E8F8", fontSize: "1rem" }}>Not sure which service fits your need?</p>
-                            <p className="text-sm" style={{ color: "#6B7A9E", fontFamily: "'DM Sans', sans-serif" }}>Describe your problem and I'll figure out the solution.</p>
+                            <p className="font-semibold" style={{ fontFamily: "'Rajdhani', sans-serif", color: "#E2E8F8", fontSize: "1rem" }}>{t("services.cta")}</p>
+                            <p className="text-sm" style={{ color: "#6B7A9E", fontFamily: "'DM Sans', sans-serif" }}>{t("services.ctaDesc")}</p>
                         </div>
                     </div>
                     <button
@@ -215,7 +236,7 @@ const ServicesSection = () => {
                             arrowRightIconRef.current?.stopAnimation()
                         }}
                     >
-                        LET'S TALK <ArrowRightIcon ref={arrowRightIconRef} size={15} />
+                        {t("services.ctaBtn")} <ArrowRightIcon ref={arrowRightIconRef} size={15} />
                     </button>
                 </motion.div>
             </div>

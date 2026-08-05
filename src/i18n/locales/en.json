@@ -1,0 +1,139 @@
+{
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "services": "Services",
+    "projects": "Projects",
+    "contact": "Contact",
+    "hire": "Hire me"
+  },
+  "hero": {
+    "viewWork": "VIEW MY WORK",
+    "getInTouch": "GET IN TOUCH",
+    "description": "I turn complex problems into elegant code. Whether it's shipping a game mechanic that feels right, or architecting a backend that scales — I build solutions that actually matter to clients.",
+    "statusOnline": "STATUS: ONLINE"
+  },
+  "about": {
+    "label": "About me",
+    "title1": "Code is craft.",
+    "title2": "Games are art.",
+    "p1": "I'm a freelance software engineer who lives at the intersection of engineering discipline and creative drive. My specialty is game programming — physics systems, real-time rendering pipelines, gameplay feel — but I thrive across the full spectrum of computer science.",
+    "p2": "Every project starts the same way: understanding what you actually need, not just what you asked for. Then I build a solution that fits precisely, performs reliably, and ships on time.",
+    "p3": "When I'm not freelancing, I'm usually deep in a personal game project, contributing to open-source tools, or learning more about new technologies I currently have no experience with.",
+    "console": {
+      "whoami": "Pierre Latorse",
+      "status": "✓ Available for work",
+      "location": "Bordeaux, FR (Remote OK)",
+      "experience": "3+ years in CS",
+      "degree": "CS Master",
+      "coffee": "☕ Consumption: none",
+      "git": "a3f2c1d feat: shipped client app",
+      "bugs": "Status: fixing...",
+      "uptime": "coding for 3+ years",
+      "languages": "C++ / C# / TS / Python",
+      "ping": "Response time: < 24h",
+      "motto": "Build things that matter."
+    }
+  },
+  "skills": {
+    "label": "Skills & expertise",
+    "title": "What I bring",
+    "titleHighlight": "to the table"
+  },
+  "services": {
+    "label": "What I do",
+    "title": "Services I",
+    "titleHighlight": "can deliver",
+    "cta": "Not sure which service fits your need?",
+    "ctaDesc": "Describe your problem and I'll figure out the solution.",
+    "ctaBtn": "LET'S TALK",
+    "items": {
+      "gameDev": {
+        "title": "Game Development",
+        "subtitle": "From prototype to shipped title",
+        "description": "Gameplay systems, physics engines, AI behaviours, shaders, procedural generation — I build the parts that make games feel alive. From indie prototypes to Unreal-based productions."
+      },
+      "systems": {
+        "title": "Systems Programming",
+        "subtitle": "Low-level, high performance",
+        "description": "Memory-safe, blazing-fast software for performance-critical applications. Networking stacks, embedded tooling, custom allocators, real-time systems."
+      },
+      "web": {
+        "title": "Web & Full-Stack",
+        "subtitle": "End-to-end web applications",
+        "description": "Complete web products from database schema to pixel-perfect UI. REST & GraphQL APIs, authentication, dashboards, real-time features."
+      },
+      "tools": {
+        "title": "Tools & Automation",
+        "subtitle": "Workflows that work for you",
+        "description": "Custom CLI tools, editor plugins, build systems, CI/CD pipelines, scripting — anything that saves your team hours every week."
+      },
+      "architecture": {
+        "title": "Software Architecture",
+        "subtitle": "Design that scales",
+        "description": "System design, architecture reviews, tech stack consulting. I help teams make the right structural decisions before they become expensive problems."
+      },
+      "rnd": {
+        "title": "R&D & Prototyping",
+        "subtitle": "Explore first, build fast",
+        "description": "Rapid prototyping for any CS challenge — algorithm design, research implementation, proof-of-concepts. If it involves a computer, I can make it work."
+      }
+    }
+  },
+  "projects": {
+    "label": "Selected work",
+    "title": "Projects that",
+    "titleHighlight": "shipped",
+    "viewAll": "View all projects on GitHub",
+    "source": "Source",
+    "liveDemo": "Live Demo",
+    "featured": "featured",
+    "items": {
+      "voidengine": {
+        "type": "Game Engine",
+        "desc": "A custom 2D/3D game engine built from scratch in C++17 with an OpenGL renderer, entity-component system, scene editor, and integrated Lua scripting for gameplay logic."
+      },
+      "neoncity": {
+        "type": "Indie Game",
+        "desc": "A cyberpunk endless runner with procedurally generated city blocks, dynamic obstacle patterns, and a real-time lighting system using Unity's HDRP pipeline."
+      },
+      "clientsync": {
+        "type": "Web App",
+        "desc": "A client relationship manager built for a small consulting firm. Features pipeline tracking, contract management, invoice generation, and Slack integration."
+      },
+      "rustnet": {
+        "type": "Networking Library",
+        "desc": "A lightweight game networking library in Rust implementing reliable UDP, client prediction, lag compensation, and server reconciliation for multiplayer games."
+      },
+      "shaderlab": {
+        "type": "Tool",
+        "desc": "An in-browser GLSL shader playground with live editing, uniform sliders, texture upload support, and one-click export to Unity-compatible shader code."
+      },
+      "logicforge": {
+        "type": "Game Jam Entry",
+        "desc": "48-hour game jam entry — a puzzle platformer where you reprogram the level's logic mid-run. Placed 3rd in the Ludum Dare 54 Compo category."
+      }
+    }
+  },
+  "contact": {
+    "label": "Let's work together",
+    "title": "Have a project",
+    "titleHighlight": "in mind?",
+    "description": "Whether it's a game, a web app, or something entirely new — I'm open to interesting work. Let's talk.",
+    "directContact": "Direct contact",
+    "findMe": "Find me online",
+    "available": "Available for projects",
+    "availableDesc": "Currently accepting new clients — typical response within 24 hours.",
+    "name": "Your name",
+    "email": "Your email",
+    "message": "Tell me about your project...",
+    "send": "Send message",
+    "sending": "Sending...",
+    "successTitle": "Message sent!",
+    "successDesc": "I'll get back to you within 24 hours.",
+    "error": "Something went wrong. Please try again."
+  },
+  "footer": {
+    "built": "built by Pierre Latorse"
+  }
+}

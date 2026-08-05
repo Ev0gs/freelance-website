@@ -1,0 +1,171 @@
+{
+  "nav": {
+    "about": "À propos",
+    "skills": "Compétences",
+    "services": "Services",
+    "projects": "Projets",
+    "contact": "Contact",
+    "hire": "M'engager"
+  },
+  "hero": {
+    "hello": "// Bonjour, monde",
+    "viewWork": "VOIR MES PROJETS",
+    "getInTouch": "ME CONTACTER",
+    "description": "Je transforme des problèmes complexes en code élégant. Que ce soit pour livrer une mécanique de jeu qui feel right, ou architecturer un backend scalable — je construis des solutions qui comptent vraiment.",
+    "statusOnline": "STATUT: EN LIGNE",
+    "sysVersion": "SYS: v2.4.1",
+    "modeFreelance": "MODE: FREELANCE"
+  },
+  "about": {
+    "label": "À propos",
+    "title1": "Le code, c'est un art.",
+    "title2": "Les jeux aussi.",
+    "p1": "Je suis un ingénieur logiciel freelance qui vit à l'intersection de la discipline technique et de la créativité. Ma spécialité, c'est la programmation de jeux — systèmes physiques, pipelines de rendu temps réel, gameplay feel — mais je m'épanouis dans tout le spectre de l'informatique.",
+    "p2": "Chaque projet commence pareil : comprendre ce dont vous avez vraiment besoin, pas juste ce que vous demandez. Ensuite je construis une solution précise, fiable, et livrée dans les temps.",
+    "p3": "Quand je ne suis pas en freelance, je suis généralement plongé dans un projet de jeu personnel, je contribue à des outils open-source, ou j'apprends de nouvelles technologies.",
+    "console": {
+      "whoami": "Pierre Latorse",
+      "status": "✓ Disponible pour travailler",
+      "location": "Bordeaux, FR (Remote OK)",
+      "experience": "3+ ans en informatique",
+      "degree": "Master Informatique",
+      "coffee": "☕ Consommation: nulle",
+      "git": "a3f2c1d feat: app client livrée",
+      "bugs": "Statut: en cours de fix...",
+      "uptime": "en train de coder depuis 3+ ans",
+      "languages": "C++ / C# / TS / Python",
+      "ping": "Temps de réponse: < 24h",
+      "motto": "Construire des choses qui comptent."
+    }
+  },
+  "skills": {
+    "label": "Compétences & expertise",
+    "title": "Ce que j'apporte",
+    "titleHighlight": "à la table",
+    "categories": {
+      "gameDev": "Développement de jeux",
+      "backend": "Systèmes & Backend",
+      "web": "Web & Frontend",
+      "tools": "Outils & Workflow"
+    },
+    "items": {
+      "unity": "Unity / C#",
+      "unreal": "Unreal Engine / C++",
+      "opengl": "OpenGL / GLSL",
+      "physics": "Physique de jeu",
+      "gameplay": "Systèmes de gameplay",
+      "java": "Java",
+      "python": "Python",
+      "nodejs": "Node.js / Express",
+      "postgres": "PostgreSQL",
+      "docker": "Docker / DevOps",
+      "react": "TypeScript / React",
+      "webgl": "WebGL / Three.js",
+      "nextjs": "Next.js",
+      "tailwind": "TailwindCSS",
+      "graphql": "REST / GraphQL",
+      "git": "Git / GitHub",
+      "linux": "Linux / Bash",
+      "cmake": "CMake / Systèmes de build",
+      "cicd": "Pipelines CI/CD",
+      "agile": "Agile / Scrum"
+    }
+  },
+  "services": {
+    "label": "Ce que je fais",
+    "title": "Services que je",
+    "titleHighlight": "peux livrer",
+    "subtitle": "L'informatique est vaste. J'en couvre la majeure partie. Si ça implique un ordinateur et du code, je peux probablement aider.",
+    "cta": "Pas sûr du service qui correspond à votre besoin ?",
+    "ctaDesc": "Décrivez votre problème et je trouverai la solution.",
+    "ctaBtn": "PARLONS-EN",
+    "items": {
+      "gameDev": {
+        "title": "Développement de jeux",
+        "subtitle": "Du prototype au titre livré",
+        "description": "Systèmes de gameplay, moteurs physiques, comportements IA, shaders, génération procédurale — je construis les éléments qui donnent vie aux jeux. Des prototypes indie aux productions Unreal."
+      },
+      "systems": {
+        "title": "Programmation Systèmes",
+        "subtitle": "Bas niveau, haute performance",
+        "description": "Logiciels sûrs en mémoire et ultra-rapides pour les applications critiques en performance. Stacks réseau, outillage embarqué, allocateurs personnalisés, systèmes temps réel."
+      },
+      "web": {
+        "title": "Web & Full-Stack",
+        "subtitle": "Applications web de bout en bout",
+        "description": "Produits web complets du schéma de base de données à l'UI pixel-perfect. APIs REST & GraphQL, authentification, tableaux de bord, fonctionnalités temps réel."
+      },
+      "tools": {
+        "title": "Outils & Automatisation",
+        "subtitle": "Des workflows qui fonctionnent",
+        "description": "Outils CLI personnalisés, plugins d'éditeur, systèmes de build, pipelines CI/CD, scripting — tout ce qui fait gagner des heures à votre équipe chaque semaine."
+      },
+      "architecture": {
+        "title": "Architecture Logicielle",
+        "subtitle": "Une conception qui passe à l'échelle",
+        "description": "Conception de systèmes, revues d'architecture, conseil sur la stack technique. J'aide les équipes à prendre les bonnes décisions structurelles avant qu'elles ne deviennent coûteuses."
+      },
+      "rnd": {
+        "title": "R&D & Prototypage",
+        "subtitle": "Explorer d'abord, construire vite",
+        "description": "Prototypage rapide pour tout défi informatique — conception d'algorithmes, implémentation de recherche, preuves de concept. Si ça implique un ordinateur, je peux le faire fonctionner."
+      }
+    }
+  },
+  "projects": {
+    "label": "Travaux sélectionnés",
+    "title": "Projets qui ont",
+    "titleHighlight": "été livrés",
+    "viewAll": "Voir tous les projets sur GitHub",
+    "source": "Source",
+    "liveDemo": "Démo live",
+    "featured": "vedette",
+    "items": {
+      "voidengine": {
+        "type": "Moteur de jeu",
+        "desc": "Un moteur de jeu 2D/3D custom construit de zéro en C++17 avec un renderer OpenGL, un système entité-composant, un éditeur de scène, et du scripting Lua intégré pour la logique de gameplay."
+      },
+      "neoncity": {
+        "type": "Jeu indépendant",
+        "desc": "Un endless runner cyberpunk avec des blocs de ville générés procéduralement, des patterns d'obstacles dynamiques, et un système d'éclairage temps réel via le pipeline HDRP d'Unity."
+      },
+      "clientsync": {
+        "type": "Application web",
+        "desc": "Un CRM construit pour un cabinet de conseil. Inclut le suivi de pipeline, la gestion de contrats, la génération de factures, et une intégration Slack."
+      },
+      "rustnet": {
+        "type": "Librairie réseau",
+        "desc": "Une librairie réseau légère pour jeux en Rust implémentant UDP fiable, prédiction client, compensation de lag, et réconciliation serveur pour les jeux multijoueurs."
+      },
+      "shaderlab": {
+        "type": "Outil",
+        "desc": "Un playground GLSL in-browser avec édition en direct, sliders d'uniforms, upload de textures, et export en un clic vers du code shader compatible Unity."
+      },
+      "logicforge": {
+        "type": "Entrée Game Jam",
+        "desc": "Entrée de game jam de 48h — un puzzle platformer où vous reprogrammez la logique du niveau en cours de run. 3ème place dans la catégorie Compo de la Ludum Dare 54."
+      }
+    }
+  },
+  "contact": {
+    "label": "Travaillons ensemble",
+    "title": "Vous avez un projet",
+    "titleHighlight": "en tête ?",
+    "description": "Que ce soit un jeu, une app web, ou quelque chose d'entièrement nouveau — je suis ouvert à des missions intéressantes. Parlons-en.",
+    "directContact": "Contact direct",
+    "findMe": "Me trouver en ligne",
+    "available": "Disponible pour des projets",
+    "availableDesc": "J'accepte actuellement de nouveaux clients — réponse typique sous 24 heures.",
+    "name": "Votre nom",
+    "email": "Votre email",
+    "message": "Parlez-moi de votre projet...",
+    "send": "Envoyer le message",
+    "sending": "Envoi en cours...",
+    "successTitle": "Message envoyé !",
+    "successDesc": "Je vous répondrai dans les 24 heures.",
+    "error": "Une erreur est survenue. Veuillez réessayer."
+  },
+  "footer": {
+    "built": "créé par Pierre Latorse"
+  }
+}

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { animate, scrambleText } from "animejs";
 import { ArrowRightIcon, type ArrowRightIconHandle } from "@/components/ui/arrow-right.tsx";
+import { useTranslation } from "react-i18next"
 
 const ROLES = [
     "Game Developer",
@@ -14,6 +15,7 @@ const ROLES = [
 ];
 
 const HeroSection = () => {
+    const { t } = useTranslation()
     const roleRef = useRef<HTMLSpanElement>(null);
     const wordIdxRef = useRef(0);
     const [started, setStarted] = useState(false);
@@ -67,7 +69,7 @@ const HeroSection = () => {
                             className="text-sm tracking-[0.3em] uppercase mb-4"
                             style={{ color: "#00D4FF", fontFamily: "'JetBrains Mono', monospace" }}
                         >
-                            // Hello, world
+                            // HELLO, WORLD
                         </p>
                         <h1
                             className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4 leading-none"
@@ -95,9 +97,7 @@ const HeroSection = () => {
                             className="text-base md:text-lg max-w-xl mb-10 leading-relaxed"
                             style={{ color: "#6B7A9E", fontFamily: "'DM Sans', sans-serif", fontWeight: 300 }}
                         >
-                            I turn complex problems into elegant code. Whether it's shipping a
-                            game mechanic that feels right, or architecting a backend that scales
-                            — I build solutions that actually matter to clients.
+                            {t("hero.description")}
                         </p>
 
                         <div className="flex flex-wrap gap-4">
@@ -125,7 +125,7 @@ const HeroSection = () => {
                                     arrowRef.current?.stopAnimation();
                                 }}
                             >
-                                VIEW MY WORK
+                                {t("hero.viewWork")}
                                 <ArrowRightIcon ref={arrowRef} size={16} />
                             </button>
                             <button
@@ -152,7 +152,7 @@ const HeroSection = () => {
                                     e.currentTarget.style.background = "transparent";
                                 }}
                             >
-                                GET IN TOUCH
+                                {t("hero.getInTouch")}
                             </button>
                         </div>
                     </motion.div>
@@ -223,7 +223,7 @@ const HeroSection = () => {
 
                             {/* Labels holographiques — EN DEHORS du masque */}
                             {[
-                                { text: "STATUS: ONLINE", top: "8%", right: "0%", color: "#00FF9C", delay: 0 },
+                                { text: t("hero.statusOnline"), top: "8%", right: "0%", color: "#00FF9C", delay: 0 },
                                 { text: "SYS: v2.4.1", top: "45%", left: "0%", color: "#00D4FF", delay: 1.5 },
                                 { text: "MODE: FREELANCE", bottom: "25%", right: "0%", color: "#7B2FFF", delay: 3 },
                             ].map((label, i) => (

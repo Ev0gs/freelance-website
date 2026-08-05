@@ -6,6 +6,7 @@ import {GithubIcon, type GithubIconHandle} from "@/components/ui/github.tsx";
 import {LinkedinIcon, type LinkedinIconHandle} from "@/components/ui/linkedin.tsx";
 import {ZapIcon, type ZapHandle} from "@/components/ui/zap.tsx";
 import emailjs from "@emailjs/browser"
+import { useTranslation } from "react-i18next"
 
 const EMAILJS_SERVICE_ID = "service_k5ug7rc"
 const EMAILJS_TEMPLATE_ID = "template_0jss0eh"
@@ -18,6 +19,7 @@ const ContactSection = () => {
     const [sent, setSent] = useState(false);
     const [sending, setSending] = useState(false)
     const [error, setError] = useState<string | null>(null)
+    const { t } = useTranslation()
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -37,7 +39,7 @@ const ContactSection = () => {
             )
             setSent(true)
         } catch (err) {
-            setError("Something went wrong. Please try again.")
+            setError(t("contact.error"))
             console.error(err)
         } finally {
             setSending(false)
@@ -88,20 +90,19 @@ const ContactSection = () => {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <SectionLabel text="Let's work together" />
+                    <SectionLabel text={t("contact.label")} />
                     <h2
                         className="text-4xl md:text-5xl font-bold mb-4"
                         style={{ fontFamily: "'Rajdhani', sans-serif", color: "#E2E8F8" }}
                     >
-                        Have a project{" "}
-                        <span style={{ color: "#00D4FF" }}>in mind?</span>
+                        {t("contact.title")}{" "}
+                        <span style={{ color: "#00D4FF" }}>{t("contact.titleHighlight")}</span>
                     </h2>
                     <p
                         className="text-base max-w-md mx-auto"
                         style={{ color: "#6B7A9E", fontFamily: "'DM Sans', sans-serif", fontWeight: 300 }}
                     >
-                        Whether it&apos;s a game, a web app, or something entirely new — I&apos;m open to
-                        interesting work. Let&apos;s talk.
+                        {t("contact.description")}
                     </p>
                 </motion.div>
 
@@ -118,7 +119,7 @@ const ContactSection = () => {
                                 className="text-xs tracking-widest uppercase mb-4"
                                 style={{ color: "#6B7A9E", fontFamily: "'JetBrains Mono', monospace" }}
                             >
-                                Direct contact
+                                {t("contact.directContact")}
                             </p>
                             <a
                                 href="mailto:pierrelat33@gmail.com"
@@ -146,7 +147,7 @@ const ContactSection = () => {
                                 className="text-xs tracking-widest uppercase mb-4"
                                 style={{ color: "#6B7A9E", fontFamily: "'JetBrains Mono', monospace" }}
                             >
-                                Find me online
+                                {t("contact.findMe")}
                             </p>
                             <div className="flex flex-col gap-3">
                                 {[
@@ -199,14 +200,14 @@ const ContactSection = () => {
                                     className="text-xs"
                                     style={{ color: "#00FF9C", fontFamily: "'JetBrains Mono', monospace" }}
                                 >
-                  Available for projects
+                  {t("contact.available")}
                 </span>
                             </div>
                             <p
                                 className="text-xs"
                                 style={{ color: "#6B7A9E", fontFamily: "'DM Sans', sans-serif" }}
                             >
-                                Currently accepting new clients — typical response within 24 hours.
+                                {t("contact.availableDesc")}
                             </p>
                         </div>
                     </div>
@@ -232,20 +233,20 @@ const ContactSection = () => {
                                     className="text-2xl font-bold mb-2"
                                     style={{ color: "#E2E8F8", fontFamily: "'Rajdhani', sans-serif" }}
                                 >
-                                    Message sent!
+                                    {t("contact.successTitle")}
                                 </h3>
                                 <p
                                     className="text-sm"
                                     style={{ color: "#6B7A9E", fontFamily: "'DM Sans', sans-serif" }}
                                 >
-                                    I&apos;ll get back to you within 24 hours.
+                                    {t("contact.successDesc")}
                                 </p>
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                                 <input
                                     type="text"
-                                    placeholder="Your name"
+                                    placeholder={t("contact.name")}
                                     required
                                     value={form.name}
                                     onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -255,7 +256,7 @@ const ContactSection = () => {
                                 />
                                 <input
                                     type="email"
-                                    placeholder="Your email"
+                                    placeholder={t("contact.email")}
                                     required
                                     value={form.email}
                                     onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -264,7 +265,7 @@ const ContactSection = () => {
                                     onBlur={(e) => (e.target.style.borderColor = "rgba(0,212,255,0.15)")}
                                 />
                                 <textarea
-                                    placeholder="Tell me about your project..."
+                                    placeholder={t("contact.message")}
                                     required
                                     rows={5}
                                     value={form.message}
@@ -299,7 +300,7 @@ const ContactSection = () => {
                                         e.currentTarget.style.transform = "translateY(0)"
                                     }}
                                 >
-                                    {sending ? "Sending..." : "Send message"}
+                                    {sending ? t("contact.sending") : t("contact.send")}
                                 </button>
 
                                 {/* Message d'erreur */}

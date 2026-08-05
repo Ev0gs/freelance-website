@@ -4,71 +4,10 @@ import {ArrowRight, BookMarked, ExternalLink, Zap} from "lucide-react";
 import SectionLabel from "../components/SectionLabel.tsx";
 import HoloScan from "@/components/HoloScan.tsx";
 import {useTilt} from "@/hooks/useTilt.ts";
-
-const PROJECTS = [
-    {
-        title: "VoidEngine",
-        type: "Game Engine",
-        tag: "C++ / OpenGL",
-        tagColor: "#7B2FFF",
-        desc: "A custom 2D/3D game engine built from scratch in C++17 with an OpenGL renderer, entity-component system, scene editor, and integrated Lua scripting for gameplay logic.",
-        image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=700&h=420&fit=crop&auto=format",
-        links: { github: "#", live: null },
-        featured: true,
-    },
-    {
-        title: "NeonCity Runners",
-        type: "Indie Game",
-        tag: "Unity / C#",
-        tagColor: "#00D4FF",
-        desc: "A cyberpunk endless runner with procedurally generated city blocks, dynamic obstacle patterns, and a real-time lighting system using Unity's HDRP pipeline.",
-        image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=700&h=420&fit=crop&auto=format",
-        links: { github: "#", live: "#" },
-        featured: true,
-    },
-    {
-        title: "ClientSync CRM",
-        type: "Web App",
-        tag: "TypeScript / React",
-        tagColor: "#00FF9C",
-        desc: "A client relationship manager built for a small consulting firm. Features pipeline tracking, contract management, invoice generation, and Slack integration.",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&h=420&fit=crop&auto=format",
-        links: { github: "#", live: "#" },
-        featured: false,
-    },
-    {
-        title: "RustNet",
-        type: "Networking Library",
-        tag: "Rust",
-        tagColor: "#FFB800",
-        desc: "A lightweight game networking library in Rust implementing reliable UDP, client prediction, lag compensation, and server reconciliation for multiplayer games.",
-        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&h=420&fit=crop&auto=format",
-        links: { github: "#", live: null },
-        featured: false,
-    },
-    {
-        title: "ShaderLab",
-        type: "Tool",
-        tag: "WebGL / GLSL",
-        tagColor: "#FF3B5C",
-        desc: "An in-browser GLSL shader playground with live editing, uniform sliders, texture upload support, and one-click export to Unity-compatible shader code.",
-        image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=700&h=420&fit=crop&auto=format",
-        links: { github: "#", live: "#" },
-        featured: false,
-    },
-    {
-        title: "LogicForge",
-        type: "Game Jam Entry",
-        tag: "Godot / GDScript",
-        tagColor: "#7B2FFF",
-        desc: "48-hour game jam entry — a puzzle platformer where you reprogram the level's logic mid-run. Placed 3rd in the Ludum Dare 54 Compo category.",
-        image: "https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=700&h=420&fit=crop&auto=format",
-        links: { github: "#", live: "#" },
-        featured: false,
-    },
-];
+import { useTranslation } from "react-i18next"
 
 interface Project {
+    id: string
     title: string
     type: string
     tag: string
@@ -214,6 +153,76 @@ function ProjectCard({ project, delay, index }: { project: Project; delay: numbe
 const ProjectsSection = () => {
     const ref = useRef(null);
     const inView = useInView(ref, { once: true, margin: "-80px" });
+    const { t } = useTranslation()
+
+    const PROJECTS = [
+        {
+            id: "void-engine",
+            title: "VoidEngine",
+            type: t("projects.items.voidengine.type"),
+            tag: "C++ / OpenGL",
+            tagColor: "#7B2FFF",
+            desc: t("projects.items.voidengine.desc"),
+            image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=700&h=420&fit=crop&auto=format",
+            links: { github: "#", live: null },
+            featured: true,
+        },
+        {
+            id: "neon-city",
+            title: "NeonCity Runners",
+            type: t("projects.items.neoncity.type"),
+            tag: "Unity / C#",
+            tagColor: "#00D4FF",
+            desc: t("projects.items.neoncity.desc"),
+            image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=700&h=420&fit=crop&auto=format",
+            links: { github: "#", live: "#" },
+            featured: true,
+        },
+        {
+            id: "client-sync",
+            title: "ClientSync CRM",
+            type: t("projects.items.clientsync.type"),
+            tag: "TypeScript / React",
+            tagColor: "#00FF9C",
+            desc: t("projects.items.clientsync.desc"),
+            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&h=420&fit=crop&auto=format",
+            links: { github: "#", live: "#" },
+            featured: false,
+        },
+        {
+            id: "rust-net",
+            title: "RustNet",
+            type: t("projects.items.rustnet.type"),
+            tag: "Rust",
+            tagColor: "#FFB800",
+            desc: t("projects.items.rustnet.desc"),
+            image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&h=420&fit=crop&auto=format",
+            links: { github: "#", live: null },
+            featured: false,
+        },
+        {
+            id: "shader-lab",
+            title: "ShaderLab",
+            type: t("projects.items.shaderlab.type"),
+            tag: "WebGL / GLSL",
+            tagColor: "#FF3B5C",
+            desc: t("projects.items.shaderlab.desc"),
+            image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=700&h=420&fit=crop&auto=format",
+            links: { github: "#", live: "#" },
+            featured: false,
+        },
+        {
+            id: "logic-forge",
+            title: "LogicForge",
+            type: t("projects.items.logicforge.type"),
+            tag: "Godot / GDScript",
+            tagColor: "#7B2FFF",
+            desc: t("projects.items.logicforge.desc"),
+            image: "https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=700&h=420&fit=crop&auto=format",
+            links: { github: "#", live: "#" },
+            featured: false,
+        },
+    ]
 
     return (
         <section id="projects" className="relative py-28 px-6" style={{ zIndex: 1 }}>
@@ -224,19 +233,19 @@ const ProjectsSection = () => {
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.6 }}
                 >
-                    <SectionLabel text="Selected work" />
+                    <SectionLabel text={t("projects.label")} />
                     <h2
                         className="text-4xl md:text-5xl font-bold mb-14"
                         style={{ fontFamily: "'Rajdhani', sans-serif", color: "#E2E8F8" }}
                     >
-                        Projects that{" "}
-                        <span style={{ color: "#7B2FFF" }}>shipped</span>
+                        {t("projects.title")}{" "}
+                        <span style={{ color: "#7B2FFF" }}>{t("projects.titleHighlight")}</span>
                     </h2>
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                     {PROJECTS.map((p, i) => (
-                        <ProjectCard key={p.title} project={p} delay={i * 0.08} index={i} />
+                        <ProjectCard key={p.id} project={p} delay={i * 0.08} index={i} />
                     ))}
                 </div>
 
@@ -246,16 +255,18 @@ const ProjectsSection = () => {
                     transition={{ delay: 0.6, duration: 0.6 }}
                     className="mt-16 flex justify-center"
                 >
-                    <a
-                        href="#"
-                        className="flex items-center gap-2 text-sm transition-all duration-200 hover:gap-3"
-                        style={{ color: "#00D4FF", fontFamily: "'DM Sans', sans-serif" }}
+                <a
+                    href="https://github.com/Ev0gs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm transition-all duration-200 hover:gap-3"
+                    style={{ color: "#00D4FF", fontFamily: "'DM Sans', sans-serif" }}
                     >
-                        View all projects on GitHub <ArrowRight size={15} />
-                    </a>
-                </motion.div>
-            </div>
-        </section>
+                    {t("projects.viewAll")} <ArrowRight size={15} />
+                </a>
+            </motion.div>
+        </div>
+</section>
     )
 }
 

@@ -5,6 +5,7 @@ import SectionLabel from "../components/SectionLabel"
 import HoloScan from "../components/HoloScan"
 import HoloCube from "../components/HoloCube"
 import LogoCloud from "@/components/LogoCloud.tsx";
+import { useTranslation } from "react-i18next"
 
 const SKILLS = [
     {
@@ -96,6 +97,7 @@ function SkillBar({ name, level, color }: { name: string; level: number; color: 
 const SkillsSection = () => {
     const ref = useRef(null)
     const inView = useInView(ref, { once: true, margin: "-80px" })
+    const { t } = useTranslation()
 
     return (
         <section id="skills" className="relative py-28 px-6" style={{ zIndex: 1 }}>
@@ -107,14 +109,14 @@ const SkillsSection = () => {
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.6 }}
                 >
-                    <SectionLabel text="Skills & expertise" />
+                    <SectionLabel text={t("skills.label")} />
                     <div className="flex items-end justify-between mb-6">
                         <h2
                             className="text-4xl md:text-5xl font-bold"
                             style={{ fontFamily: "'Rajdhani', sans-serif", color: "#E2E8F8" }}
                         >
-                            What I bring{" "}
-                            <span style={{ color: "#00D4FF" }}>to the table</span>
+                            {t("skills.title")}{" "}
+                            <span style={{ color: "#00D4FF" }}>{t("skills.titleHighlight")}</span>
                         </h2>
                         <div className="hidden md:block opacity-60">
                             <HoloCube size={70} color="#00D4FF" delay={0.5} />

@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from "motion/react"
 import { Menu, X } from "lucide-react"
-import Logo from "@/components/Logo.tsx";
+import Logo from "@/components/Logo.tsx"
+import LangSwitcher from "@/components/LangSwitcher.tsx"
+import { useTranslation } from "react-i18next"
 
 const Navbar = () => {
+    const { t } = useTranslation()
     const [scrolled, setScrolled] = useState(false)
     const [mobileOpen, setMobileOpen] = useState(false)
     const [hoveredLink, setHoveredLink] = useState<string | null>(null)
@@ -14,10 +17,16 @@ const Navbar = () => {
         return () => window.removeEventListener("scroll", handler)
     }, [])
 
-    const links = ["About", "Skills", "Services", "Projects", "Contact"]
+    const links = [
+        { label: t("nav.about"),    id: "about" },
+        { label: t("nav.skills"),   id: "skills" },
+        { label: t("nav.services"), id: "services" },
+        { label: t("nav.projects"), id: "projects" },
+        { label: t("nav.contact"),  id: "contact" },
+    ]
 
     const scrollTo = (id: string) => {
-        document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: "smooth" })
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
         setMobileOpen(false)
     }
 
@@ -44,23 +53,22 @@ const Navbar = () => {
                     onMouseLeave={() => setHoveredLink(null)}
                 >
                     {links.map((l) => (
-                        <li key={l} className="relative">
+                        <li key={l.id} className="relative">
                             <button
-                                onClick={() => scrollTo(l)}
-                                onMouseEnter={() => setHoveredLink(l)}
+                                onClick={() => scrollTo(l.id)}
+                                onMouseEnter={() => setHoveredLink(l.id)}
                                 className="text-sm tracking-wide transition-colors duration-200 pb-1 cursor-pointer"
                                 style={{
-                                    color: hoveredLink === l ? "#00D4FF" : "#A8B4D4",
+                                    color: hoveredLink === l.id ? "#00D4FF" : "#A8B4D4",
                                     fontFamily: "'DM Sans', sans-serif",
                                     fontWeight: 500,
                                 }}
                             >
-                                {l}
+                                {l.label}
                             </button>
 
-                            {/* Animated underline */}
                             <AnimatePresence>
-                                {hoveredLink === l && (
+                                {hoveredLink === l.id && (
                                     <motion.span
                                         layoutId="underline"
                                         className="absolute left-0 bottom-0 h-px w-full"
@@ -76,24 +84,27 @@ const Navbar = () => {
                     ))}
                 </ul>
 
-                <button
-                    className="hidden md:flex items-center gap-2 text-sm px-4 py-2 transition-all duration-200 cursor-pointer"
-                    style={{
-                        border: "1px solid rgba(0,212,255,0.4)",
-                        color: "#00D4FF",
-                        borderRadius: "4px",
-                        fontFamily: "'DM Sans', sans-serif",
-                    }}
-                    onClick={() => scrollTo("Contact")}
-                    onMouseEnter={(e) => {
-                        e.currentTarget.style.background = "rgba(0,212,255,0.1)"
-                    }}
-                    onMouseLeave={(e) => {
-                        e.currentTarget.style.background = "transparent"
-                    }}
-                >
-                    Hire me
-                </button>
+                <div className="hidden md:flex items-center gap-3">
+                    <LangSwitcher />
+                    <button
+                        className="flex items-center gap-2 text-sm px-4 py-2 transition-all duration-200 cursor-pointer"
+                        style={{
+                            border: "1px solid rgba(0,212,255,0.4)",
+                            color: "#00D4FF",
+                            borderRadius: "4px",
+                            fontFamily: "'DM Sans', sans-serif",
+                        }}
+                        onClick={() => scrollTo("contact")}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.background = "rgba(0,212,255,0.1)"
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.background = "transparent"
+                        }}
+                    >
+                        {t("nav.hire")}
+                    </button>
+                </div>
 
                 <button
                     className="md:hidden"
@@ -104,7 +115,6 @@ const Navbar = () => {
                 </button>
             </div>
 
-            {/* Animated underline (mobile ver.) */}
             <AnimatePresence>
                 {mobileOpen && (
                     <motion.div
@@ -116,14 +126,15 @@ const Navbar = () => {
                     >
                         {links.map((l) => (
                             <button
-                                key={l}
-                                onClick={() => scrollTo(l)}
+                                key={l.id}
+                                onClick={() => scrollTo(l.id)}
                                 className="text-left text-base"
                                 style={{ color: "#A8B4D4", fontFamily: "'DM Sans', sans-serif" }}
                             >
-                                {l}
+                                {l.label}
                             </button>
                         ))}
+                        <LangSwitcher />
                     </motion.div>
                 )}
             </AnimatePresence>
