@@ -29,8 +29,8 @@ const ContactSection = () => {
                 EMAILJS_SERVICE_ID,
                 EMAILJS_TEMPLATE_ID,
                 {
-                    name: form.name,
-                    email: form.email,
+                    from_name: form.name,
+                    from_email: form.email,
                     message: form.message,
                 },
                 EMAILJS_PUBLIC_KEY
