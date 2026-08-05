@@ -39,14 +39,14 @@ const AboutSection = () => {
                                 across the full spectrum of computer science.
                             </p>
                             <p>
-                                Every project starts the same way: understanding what the client actually needs,
-                                not just what they asked for. Then I build a solution that fits precisely,
+                                Every project starts the same way: understanding what you actually needs,
+                                not just what you asked for. Then I build a solution that fits precisely,
                                 performs reliably, and ships on time.
                             </p>
                             <p>
                                 When I&apos;m not freelancing, I&apos;m usually deep in a personal game project,
-                                contributing to open-source tools, or figuring out why a shader is doing
-                                something unexpected.
+                                contributing to open-source tools, or learning more about new technologies I currently
+                                have no experience with.
                             </p>
                         </div>
                         <div className="mt-8 flex flex-wrap gap-3">
