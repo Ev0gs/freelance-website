@@ -6,6 +6,7 @@ import SkillsSection from "./sections/SkillsSection.tsx";
 import ContactSection from "./sections/ContactSection.tsx";
 import ProjectsSection from "./sections/ProjectsSection.tsx";
 import Footer from "./components/Footer.tsx";
+import ServicesSection from "@/sections/ServicesSection.tsx";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <HeroSection/>
         <AboutSection/>
         <SkillsSection/>
+        <ServicesSection/>
         <ProjectsSection/>
         <ContactSection/>
         <Footer/>

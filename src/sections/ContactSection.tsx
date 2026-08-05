@@ -94,7 +94,7 @@ const ContactSection = () => {
                                 Direct contact
                             </p>
                             <a
-                                href="mailto:alex@mercer.dev"
+                                href="mailto:pierrelat33@gmail.com"
                                 className="flex items-center gap-3 group"
                                 onMouseEnter={() => {mailboxRef.current?.startAnimation()}}
                                 onMouseLeave={() => {mailboxRef.current?.stopAnimation()}}
@@ -109,8 +109,8 @@ const ContactSection = () => {
                                     className="text-sm group-hover:text-[#00D4FF] transition-colors"
                                     style={{ color: "#A8B4D4", fontFamily: "'DM Sans', sans-serif" }}
                                 >
-                  alex@mercer.dev
-                </span>
+                                  pierrelat33@gmail.com
+                                </span>
                             </a>
                         </div>
 
@@ -123,12 +123,14 @@ const ContactSection = () => {
                             </p>
                             <div className="flex flex-col gap-3">
                                 {[
-                                    { icon: GithubIcon, label: "github.com/alexmercer", href: "#", iconRef:githubRef },
-                                    { icon: LinkedinIcon, label: "linkedin.com/in/alexmercer", href: "#", iconRef:linkedinRef },
+                                    { icon: GithubIcon, label: "github.com/Evogs", href: "https://github.com/Ev0gs", iconRef:githubRef },
+                                    { icon: LinkedinIcon, label: "linkedin.com/in/pierre-latorse", href: "https://www.linkedin.com/in/pierre-latorse-968242171/", iconRef:linkedinRef },
                                 ].map(({ icon: Icon, label, href, iconRef }) => (
                                     <a
                                         key={label}
                                         href={href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="flex items-center gap-3 group"
                                         onMouseEnter={() => {iconRef.current?.startAnimation()}}
                                         onMouseLeave={() => {iconRef.current?.stopAnimation()}}

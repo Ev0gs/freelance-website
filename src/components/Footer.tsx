@@ -12,7 +12,7 @@ const Footer = () => {
                 style={{ color: "#6B7A9E", fontFamily: "'JetBrains Mono', monospace" }}
             >
                 <span style={{ color: "#7B2FFF" }}>&lt;</span>
-                built by Alex Mercer
+                built by Pierre Latorse
                 <span style={{ color: "#7B2FFF" }}> /&gt;</span>
                 {" "}— 2025
             </p>

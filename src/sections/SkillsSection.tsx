@@ -4,6 +4,7 @@ import { Gamepad2, Cpu, Globe, Terminal } from "lucide-react"
 import SectionLabel from "../components/SectionLabel"
 import HoloScan from "../components/HoloScan"
 import HoloCube from "../components/HoloCube"
+import LogoCloud from "@/components/LogoCloud.tsx";
 
 const SKILLS = [
     {
@@ -11,10 +12,10 @@ const SKILLS = [
         icon: Gamepad2,
         color: "#7B2FFF",
         items: [
-            { name: "C++ / Unreal Engine", level: 90 },
-            { name: "Unity / C#", level: 88 },
+            { name: "Unity / C#", level: 90 },
+            { name: "Unreal Engine / C++", level: 80 },
             { name: "OpenGL / GLSL", level: 75 },
-            { name: "Game Physics", level: 82 },
+            { name: "Game Physics", level: 80 },
             { name: "Gameplay Systems", level: 92 },
         ],
     },
@@ -23,7 +24,7 @@ const SKILLS = [
         icon: Cpu,
         color: "#00D4FF",
         items: [
-            { name: "Rust", level: 78 },
+            { name: "Java", level: 78 },
             { name: "Python", level: 85 },
             { name: "Node.js / Express", level: 80 },
             { name: "PostgreSQL", level: 72 },
@@ -107,7 +108,7 @@ const SkillsSection = () => {
                     transition={{ duration: 0.6 }}
                 >
                     <SectionLabel text="Skills & expertise" />
-                    <div className="flex items-end justify-between mb-14">
+                    <div className="flex items-end justify-between mb-6">
                         <h2
                             className="text-4xl md:text-5xl font-bold"
                             style={{ fontFamily: "'Rajdhani', sans-serif", color: "#E2E8F8" }}
@@ -121,7 +122,9 @@ const SkillsSection = () => {
                     </div>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <LogoCloud/>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                     {SKILLS.map((group, i) => {
                         const Icon = group.icon
                         return (

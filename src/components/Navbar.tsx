@@ -14,7 +14,7 @@ const Navbar = () => {
         return () => window.removeEventListener("scroll", handler)
     }, [])
 
-    const links = ["About", "Skills", "Projects", "Contact"]
+    const links = ["About", "Skills", "Services", "Projects", "Contact"]
 
     const scrollTo = (id: string) => {
         document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: "smooth" })
