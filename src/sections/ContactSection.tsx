@@ -5,17 +5,44 @@ import {MailboxIcon, type MailboxIconHandle} from "@/components/ui/mailbox.tsx";
 import {GithubIcon, type GithubIconHandle} from "@/components/ui/github.tsx";
 import {LinkedinIcon, type LinkedinIconHandle} from "@/components/ui/linkedin.tsx";
 import {ZapIcon, type ZapHandle} from "@/components/ui/zap.tsx";
+import emailjs from "@emailjs/browser"
+
+const EMAILJS_SERVICE_ID = "service_k5ug7rc"
+const EMAILJS_TEMPLATE_ID = "template_0jss0eh"
+const EMAILJS_PUBLIC_KEY = "ekDA65aFwUbiNabwb"
 
 const ContactSection = () => {
     const ref = useRef(null);
     const inView = useInView(ref, { once: true, margin: "-80px" });
     const [form, setForm] = useState({ name: "", email: "", message: "" });
     const [sent, setSent] = useState(false);
+    const [sending, setSending] = useState(false)
+    const [error, setError] = useState<string | null>(null)
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        setSent(true);
-    };
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+        setSending(true)
+        setError(null)
+
+        try {
+            await emailjs.send(
+                EMAILJS_SERVICE_ID,
+                EMAILJS_TEMPLATE_ID,
+                {
+                    name: form.name,
+                    email: form.email,
+                    message: form.message,
+                },
+                EMAILJS_PUBLIC_KEY
+            )
+            setSent(true)
+        } catch (err) {
+            setError("Something went wrong. Please try again.")
+            console.error(err)
+        } finally {
+            setSending(false)
+        }
+    }
 
     const inputStyle = {
         background: "rgba(13,17,48,0.8)",
@@ -248,25 +275,42 @@ const ContactSection = () => {
                                 />
                                 <button
                                     type="submit"
+                                    disabled={sending}
                                     className="py-3 font-semibold text-sm tracking-widest uppercase transition-all duration-200"
                                     style={{
-                                        background: "linear-gradient(135deg, #00D4FF 0%, #7B2FFF 100%)",
+                                        background: sending
+                                            ? "rgba(0,212,255,0.3)"
+                                            : "linear-gradient(135deg, #00D4FF 0%, #7B2FFF 100%)",
                                         color: "#E2E8F8",
                                         borderRadius: "4px",
                                         fontFamily: "'Rajdhani', sans-serif",
                                         fontSize: "0.9rem",
+                                        cursor: sending ? "not-allowed" : "pointer",
+                                        transition: "opacity 0.2s, transform 0.2s",
                                     }}
                                     onMouseEnter={(e) => {
-                                        e.currentTarget.style.opacity = "0.9";
-                                        e.currentTarget.style.transform = "translateY(-1px)";
+                                        if (!sending) {
+                                            e.currentTarget.style.opacity = "0.9"
+                                            e.currentTarget.style.transform = "translateY(-1px)"
+                                        }
                                     }}
                                     onMouseLeave={(e) => {
-                                        e.currentTarget.style.opacity = "1";
-                                        e.currentTarget.style.transform = "translateY(0)";
+                                        e.currentTarget.style.opacity = "1"
+                                        e.currentTarget.style.transform = "translateY(0)"
                                     }}
                                 >
-                                    Send message
+                                    {sending ? "Sending..." : "Send message"}
                                 </button>
+
+                                {/* Message d'erreur */}
+                                {error && (
+                                    <p
+                                        className="text-xs text-center"
+                                        style={{ color: "#FF3B5C", fontFamily: "'JetBrains Mono', monospace" }}
+                                    >
+                                        {error}
+                                    </p>
+                                )}
                             </form>
                         )}
                     </div>
