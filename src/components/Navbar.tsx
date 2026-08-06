@@ -71,12 +71,11 @@ const Navbar = () => {
                             <AnimatePresence>
                                 {hoveredLink === l.id && (
                                     <motion.span
-                                        layoutId="underline"
                                         className="absolute left-0 bottom-0 h-px w-full"
                                         style={{ background: "#00D4FF" }}
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        exit={{ opacity: 0 }}
+                                        initial={{ scaleX: 0, opacity: 0 }}
+                                        animate={{ scaleX: 1, opacity: 1 }}
+                                        exit={{ scaleX: 0, opacity: 0 }}
                                         transition={{ duration: 0.2 }}
                                     />
                                 )}
