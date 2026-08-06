@@ -48,18 +48,20 @@ const HoloScan = ({
             <motion.div
                 className="absolute left-0 right-0 pointer-events-none"
                 style={{
+                    willChange: "transform",
+                    top: 0,
                     height: "35%",
                     background: `linear-gradient(
-            to bottom,
-            transparent,
-            ${color}08 30%,
-            ${color}14 50%,
-            ${color}08 70%,
-            transparent
-          )`,
+                        to bottom,
+                        transparent,
+                        ${color}08 30%,
+                        ${color}14 50%,
+                        ${color}08 70%,
+                        transparent
+                      )`,
                     zIndex: 3,
                 }}
-                animate={{ top: ["-35%", "110%"] }}
+                animate={{ y: ["-135%", "210%"] }}
                 transition={{
                     duration,
                     repeat: Infinity,

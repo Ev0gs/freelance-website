@@ -43,7 +43,13 @@ const HoloCube = ({ size = 80, color = "#00D4FF", delay = 0, style }: HoloCubePr
     return (
         <motion.div
             ref={ref}
-            style={{ width: size, height: size, position: "relative", ...style }}
+            style={{
+                width: size,
+                height: size,
+                position: "relative",
+                willChange: "transform",
+                ...style
+            }}
             animate={inView ? { y: [0, -14, 0] } : false}
             transition={{ duration: 4 + delay, repeat: Infinity, ease: "easeInOut", delay }}
         >
