@@ -8,6 +8,7 @@
     "hire": "Hire me"
   },
   "hero": {
+    "hello": "// Hello, world",
     "viewWork": "VIEW MY WORK",
     "getInTouch": "GET IN TOUCH",
     "description": "I turn complex problems into elegant code. Whether it's shipping a game mechanic that feels right, or architecting a backend that scales — I build solutions that actually matter to clients.",
@@ -30,9 +31,9 @@
       "git": "a3f2c1d feat: shipped client app",
       "bugs": "Status: fixing...",
       "uptime": "coding for 3+ years",
-      "languages": "C++ / C# / TS / Python",
+      "languages": "C++ / C# / TS / Python / ...",
       "ping": "Response time: < 24h",
-      "motto": "Build things that matter."
+      "motto": "Build solutions that matter."
     }
   },
   "skills": {
@@ -119,7 +120,7 @@
     "label": "Let's work together",
     "title": "Have a project",
     "titleHighlight": "in mind?",
-    "description": "Whether it's a game, a web app, or something entirely new — I'm open to interesting work. Let's talk.",
+    "description": "Whether it's a game, a web app, or something entirely new — I'm open to all type of work. Let's talk.",
     "directContact": "Direct contact",
     "findMe": "Find me online",
     "available": "Available for projects",

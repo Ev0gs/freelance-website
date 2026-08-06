@@ -8,13 +8,11 @@
     "hire": "M'engager"
   },
   "hero": {
-    "hello": "// Bonjour, monde",
+    "hello": "// Hello, world",
     "viewWork": "VOIR MES PROJETS",
     "getInTouch": "ME CONTACTER",
-    "description": "Je transforme des problèmes complexes en code élégant. Que ce soit pour livrer une mécanique de jeu qui feel right, ou architecturer un backend scalable — je construis des solutions qui comptent vraiment.",
-    "statusOnline": "STATUT: EN LIGNE",
-    "sysVersion": "SYS: v2.4.1",
-    "modeFreelance": "MODE: FREELANCE"
+    "description": "Je transforme des problèmes complexes en code élégant. Que ce soit pour livrer une mécanique de jeu qui feel right, ou architecturer un backend scalable — je construis des solutions qui comptent vraiment pour vous.",
+    "statusOnline": "STATUT: EN LIGNE"
   },
   "about": {
     "label": "À propos",
@@ -28,48 +26,20 @@
       "status": "✓ Disponible pour travailler",
       "location": "Bordeaux, FR (Remote OK)",
       "experience": "3+ ans en informatique",
-      "degree": "Master Informatique",
+      "degree": "Master Ingénieur Informatique",
       "coffee": "☕ Consommation: nulle",
       "git": "a3f2c1d feat: app client livrée",
       "bugs": "Statut: en cours de fix...",
       "uptime": "en train de coder depuis 3+ ans",
-      "languages": "C++ / C# / TS / Python",
+      "languages": "C++ / C# / TS / Python / ...",
       "ping": "Temps de réponse: < 24h",
-      "motto": "Construire des choses qui comptent."
+      "motto": "Construire des solutions qui comptent."
     }
   },
   "skills": {
     "label": "Compétences & expertise",
     "title": "Ce que j'apporte",
-    "titleHighlight": "à la table",
-    "categories": {
-      "gameDev": "Développement de jeux",
-      "backend": "Systèmes & Backend",
-      "web": "Web & Frontend",
-      "tools": "Outils & Workflow"
-    },
-    "items": {
-      "unity": "Unity / C#",
-      "unreal": "Unreal Engine / C++",
-      "opengl": "OpenGL / GLSL",
-      "physics": "Physique de jeu",
-      "gameplay": "Systèmes de gameplay",
-      "java": "Java",
-      "python": "Python",
-      "nodejs": "Node.js / Express",
-      "postgres": "PostgreSQL",
-      "docker": "Docker / DevOps",
-      "react": "TypeScript / React",
-      "webgl": "WebGL / Three.js",
-      "nextjs": "Next.js",
-      "tailwind": "TailwindCSS",
-      "graphql": "REST / GraphQL",
-      "git": "Git / GitHub",
-      "linux": "Linux / Bash",
-      "cmake": "CMake / Systèmes de build",
-      "cicd": "Pipelines CI/CD",
-      "agile": "Agile / Scrum"
-    }
+    "titleHighlight": "à la table"
   },
   "services": {
     "label": "Ce que je fais",
@@ -123,7 +93,7 @@
     "items": {
       "nexusengine": {
         "type": "Moteur de jeu 3D",
-        "desc": "Moteur de jeu C++ custom construit autour d'une architecture ECS avec rendu OpenGL 3.3+, physique à corps rigides, et un jeu de démonstration (survival shooter) illustrant le pipeline complet."
+        "desc": "Moteur de jeu C++ custom construit autour d'une architecture ECS avec rendu OpenGL 3.3+, rigid body physics, et un jeu de démonstration (survival shooter) illustrant le pipeline complet."
       },
       "eokko": {
         "type": "Plateforme ERP",
@@ -151,7 +121,7 @@
     "label": "Travaillons ensemble",
     "title": "Vous avez un projet",
     "titleHighlight": "en tête ?",
-    "description": "Que ce soit un jeu, une app web, ou quelque chose d'entièrement nouveau — je suis ouvert à des missions intéressantes. Parlons-en.",
+    "description": "Que ce soit un jeu, une app web, ou quelque chose d'entièrement nouveau — je suis ouvert à toutes missions. Parlons-en.",
     "directContact": "Contact direct",
     "findMe": "Me trouver en ligne",
     "available": "Disponible pour des projets",
