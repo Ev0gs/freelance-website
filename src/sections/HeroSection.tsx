@@ -213,29 +213,33 @@ const HeroSection = () => {
                             <div
                                 className="absolute inset-0"
                                 style={{
-                                    maskImage: "url('/photo-mobile.png')",
+                                    maskImage: "url('/photo-mobile.webp')",
                                     maskSize: "contain",
                                     maskRepeat: "no-repeat",
                                     maskPosition: "center bottom",
-                                    WebkitMaskImage: "url('/photo-mobile.png')",
+                                    WebkitMaskImage: "url('/photo-mobile.webp')",
                                     WebkitMaskSize: "contain",
                                     WebkitMaskRepeat: "no-repeat",
                                     WebkitMaskPosition: "center bottom",
                                 }}
                             >
-                                <img
-                                    src="/photo-mobile.png"
-                                    alt="Pierre Latorse"
-                                    className="w-full h-full object-contain object-bottom"
-                                    style={{ filter: "saturate(0.8) brightness(0.85)" }}
-                                />
+                                <picture>
+                                    <source srcSet="/photo-mobile.webp" type="image/webp" />
+                                    <img
+                                        src="/photo-mobile.png"
+                                        alt="Pierre Latorse — Freelance Software Engineer"
+                                        fetchPriority="high"
+                                        className="w-full h-full object-contain object-bottom"
+                                        style={{ filter: "saturate(0.8) brightness(0.85)" }}
+                                    />
+                                </picture>
                                 {holoEffects}
                             </div>
 
-                            {/* Labels holographiques — version mobile */}
+                            {/* Labels holographiques mobile */}
                             {[
-                                { text: t("hero.statusOnline"),  top: "5%",  right: "5%",  color: "#00FF9C", delay: 0   },
-                                { text: t("hero.sysVersion"),    top: "40%", left: "2%",   color: "#00D4FF", delay: 1.5 },
+                                { text: t("hero.statusOnline"),  top: "5%",   right: "5%", color: "#00FF9C", delay: 0   },
+                                { text: t("hero.sysVersion"),    top: "40%",  left: "2%",  color: "#00D4FF", delay: 1.5 },
                                 { text: t("hero.modeFreelance"), bottom: "30%", right: "2%", color: "#7B2FFF", delay: 3  },
                             ].map((label, i) => (
                                 <motion.div
@@ -306,22 +310,26 @@ const HeroSection = () => {
                             <div
                                 className="absolute inset-0"
                                 style={{
-                                    maskImage: "url('/photo.png')",
+                                    maskImage: "url('/photo.webp')",
                                     maskSize: "cover",
                                     maskRepeat: "no-repeat",
                                     maskPosition: "center",
-                                    WebkitMaskImage: "url('/photo.png')",
+                                    WebkitMaskImage: "url('/photo.webp')",
                                     WebkitMaskSize: "cover",
                                     WebkitMaskRepeat: "no-repeat",
                                     WebkitMaskPosition: "center",
                                 }}
                             >
-                                <img
-                                    src="/photo.png"
-                                    alt="Pierre Latorse"
-                                    className="w-full h-full object-cover"
-                                    style={{ filter: "saturate(0.8) brightness(0.85)" }}
-                                />
+                                <picture>
+                                    <source srcSet="/photo.webp" type="image/webp" />
+                                    <img
+                                        src="/photo.png"
+                                        alt="Pierre Latorse — Freelance Software Engineer"
+                                        fetchPriority="high"
+                                        className="w-full h-full object-cover"
+                                        style={{ filter: "saturate(0.8) brightness(0.85)" }}
+                                    />
+                                </picture>
                                 {holoEffects}
 
                                 {/* Fondu gauche — desktop uniquement */}
@@ -333,7 +341,7 @@ const HeroSection = () => {
                                 />
                             </div>
 
-                            {/* Labels holographiques — desktop uniquement */}
+                            {/* Labels holographiques desktop */}
                             {holoLabels.map((label, i) => (
                                 <motion.div
                                     key={label.text}

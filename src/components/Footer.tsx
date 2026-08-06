@@ -13,7 +13,7 @@ const Footer = () => {
         >
             <p
                 className="text-xs"
-                style={{ color: "#6B7A9E", fontFamily: "'JetBrains Mono', monospace" }}
+                style={{ color: "#8B9BB8", fontFamily: "'JetBrains Mono', monospace" }}
             >
                 <span style={{ color: "#7B2FFF" }}>&lt;</span>
                 {t("footer.built")}

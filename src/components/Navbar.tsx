@@ -41,6 +41,7 @@ const Navbar = () => {
         >
             <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
                 <button
+                    aria-label="Scroll to top"
                     onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                     className="cursor-pointer"
                 >
@@ -107,6 +108,7 @@ const Navbar = () => {
                 </div>
 
                 <button
+                    aria-label="Open menu"
                     className="md:hidden"
                     style={{ color: "#00D4FF" }}
                     onClick={() => setMobileOpen((o) => !o)}

@@ -17,9 +17,12 @@ function useConsoleEffect(commands: {cmd: string; out: string}[]){
 
     // Auto-scroll vers le bas
     useEffect(() => {
-        if (consoleRef.current) {
-            consoleRef.current.scrollTop = consoleRef.current.scrollHeight
-        }
+        const frame = requestAnimationFrame(() => {
+            if (consoleRef.current) {
+                consoleRef.current.scrollTop = consoleRef.current.scrollHeight
+            }
+        })
+        return () => cancelAnimationFrame(frame)
     }, [lines])
 
     useEffect(() => {

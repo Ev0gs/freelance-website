@@ -30,7 +30,51 @@
   <!-- Canonical -->
   <link rel="canonical" href="https://pierrelatorse.com" />
 
+  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/pixl_logo.svg" />
+
+  <!-- Fonts -->
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Chargement non bloquant -->
+  <link
+          rel="preload"
+          as="style"
+          href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap"
+  />
+  <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap"
+          media="print"
+          onload="this.media='all'"
+  />
+
+  <!-- Fallback si JS désactivé -->
+  <noscript>
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap"
+    />
+  </noscript>
+
+  <!-- Preload des images hero -->
+  <link
+          rel="preload"
+          as="image"
+          href="/photo.webp"
+          type="image/webp"
+          fetchpriority="high"
+  />
+  <link
+          rel="preload"
+          as="image"
+          href="/photo-mobile.webp"
+          type="image/webp"
+          media="(max-width: 1024px)"
+          fetchpriority="high"
+  />
 </head>
 
 <body>

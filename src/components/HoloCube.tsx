@@ -1,5 +1,5 @@
-import { motion, useMotionValue, useTransform, animate } from "motion/react"
-import { useEffect } from "react"
+import {motion, useMotionValue, useTransform, animate, useInView} from "motion/react"
+import {useEffect, useRef} from "react"
 
 interface HoloCubeProps {
     size?: number
@@ -9,6 +9,8 @@ interface HoloCubeProps {
 }
 
 const HoloCube = ({ size = 80, color = "#00D4FF", delay = 0, style }: HoloCubeProps) => {
+    const ref = useRef(null)
+    const inView = useInView(ref, { once: false })
 
     // Particule orbitante via useMotionValue
     const progress = useMotionValue(0)
@@ -40,8 +42,9 @@ const HoloCube = ({ size = 80, color = "#00D4FF", delay = 0, style }: HoloCubePr
 
     return (
         <motion.div
+            ref={ref}
             style={{ width: size, height: size, position: "relative", ...style }}
-            animate={{ y: [0, -14, 0] }}
+            animate={inView ? { y: [0, -14, 0] } : false}
             transition={{ duration: 4 + delay, repeat: Infinity, ease: "easeInOut", delay }}
         >
             <motion.svg

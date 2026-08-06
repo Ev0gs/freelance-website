@@ -71,6 +71,7 @@ function ProjectCard({ project, delay, index }: { project: Project; delay: numbe
                                     filter: "saturate(0.6) brightness(0.7)",
                                     transform: hovered ? "scale(1.05)" : "scale(1)",
                                 }}
+                                loading="lazy"
                             />
                             <div
                                 className="absolute inset-0"
